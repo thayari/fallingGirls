@@ -1,0 +1,228 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6709705213007701957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c8203f202749db448c4334a02796e5a, type: 3}
+  m_Name: PGPlotWithoutConditions
+  m_EditorClassIdentifier: 
+  plotController: {fileID: 0}
+  transitionType: 0
+  chapterValue: 0
+  stateValue: 0
+--- !u!114 &-6105540749367145893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d45d116ae786444a05ddfff4bba888, type: 3}
+  m_Name: PGPlotAudioBehaviour
+  m_EditorClassIdentifier: 
+  audioObjectIndex: 0
+  fromClip: 0
+  clip: {fileID: 0}
+--- !u!114 &-649637688644981674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c1fd9009c23ed4c961347807efe5a2, type: 3}
+  m_Name: PGPlotNextStateCondition
+  m_EditorClassIdentifier: 
+  plotController: {fileID: 0}
+  transitionType: 0
+  chapterValue: 0
+  stateValue: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabed3650e0b9c94e9a70cf805e3ea47, type: 3}
+  m_Name: PG Plot Asset
+  m_EditorClassIdentifier: 
+  EventObjects:
+  - Test Event
+  Objects:
+  - Test Object
+  Languages:
+  - English
+  - Russian
+  - Ukrainian
+  chapters:
+  - states:
+    - languageStates:
+      - name: 
+        description: 
+      - name: 
+        description: 
+      - name: 
+        description: 
+      startTimelineEnable: 1
+      startTimelineAsset: {fileID: 0}
+      plotObjectActives:
+      - index: 0
+        active: 0
+      endTimelineEnable: 1
+      endTimelineAsset: {fileID: 0}
+      plotConditions:
+      - {fileID: 2665152625781296035}
+      plotBehaviours:
+      - {fileID: -6105540749367145893}
+      isStarted: 0
+      startEventEnable: 1
+      startEventObjectIndex: 0
+      endEventEnable: 1
+      endEventObjectIndex: 0
+      endState:
+        m_PersistentCalls:
+          m_Calls: []
+    - languageStates:
+      - name: 
+        description: 
+      - name: 
+        description: 
+      - name: 
+        description: 
+      startTimelineEnable: 0
+      startTimelineAsset: {fileID: 0}
+      plotObjectActives: []
+      endTimelineEnable: 0
+      endTimelineAsset: {fileID: 0}
+      plotConditions:
+      - {fileID: -6709705213007701957}
+      plotBehaviours: []
+      isStarted: 0
+      startEventEnable: 0
+      startEventObjectIndex: 0
+      endEventEnable: 0
+      endEventObjectIndex: 0
+      endState:
+        m_PersistentCalls:
+          m_Calls: []
+    - languageStates:
+      - name: Test
+        description: 
+      - name: "\u0422\u0435\u0441\u0442"
+        description: 
+      - name: 
+        description: 
+      startTimelineEnable: 1
+      startTimelineAsset: {fileID: 0}
+      plotObjectActives: []
+      endTimelineEnable: 1
+      endTimelineAsset: {fileID: 0}
+      plotConditions: []
+      plotBehaviours: []
+      isStarted: 0
+      startEventEnable: 1
+      startEventObjectIndex: 0
+      endEventEnable: 1
+      endEventObjectIndex: 0
+      endState:
+        m_PersistentCalls:
+          m_Calls: []
+  - states:
+    - languageStates:
+      - name: 
+        description: 
+      - name: 
+        description: 
+      - name: 
+        description: 
+      startTimelineEnable: 1
+      startTimelineAsset: {fileID: 0}
+      plotObjectActives: []
+      endTimelineEnable: 1
+      endTimelineAsset: {fileID: 0}
+      plotConditions: []
+      plotBehaviours: []
+      isStarted: 0
+      startEventEnable: 1
+      startEventObjectIndex: 0
+      endEventEnable: 1
+      endEventObjectIndex: 0
+      endState:
+        m_PersistentCalls:
+          m_Calls: []
+    - languageStates:
+      - name: 
+        description: 
+      - name: 
+        description: 
+      - name: 
+        description: 
+      startTimelineEnable: 1
+      startTimelineAsset: {fileID: 0}
+      plotObjectActives: []
+      endTimelineEnable: 1
+      endTimelineAsset: {fileID: 0}
+      plotConditions: []
+      plotBehaviours: []
+      isStarted: 0
+      startEventEnable: 1
+      startEventObjectIndex: 0
+      endEventEnable: 1
+      endEventObjectIndex: 0
+      endState:
+        m_PersistentCalls:
+          m_Calls: []
+  - states:
+    - languageStates:
+      - name: 
+        description: 
+      - name: 
+        description: 
+      - name: 
+        description: 
+      startTimelineEnable: 1
+      startTimelineAsset: {fileID: 0}
+      plotObjectActives: []
+      endTimelineEnable: 1
+      endTimelineAsset: {fileID: 0}
+      plotConditions: []
+      plotBehaviours: []
+      isStarted: 0
+      startEventEnable: 1
+      startEventObjectIndex: 0
+      endEventEnable: 1
+      endEventObjectIndex: 0
+      endState:
+        m_PersistentCalls:
+          m_Calls: []
+--- !u!114 &2665152625781296035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15df896e40f2b9e43846abd925a3c69a, type: 3}
+  m_Name: PGPlotEnableObjectCondition
+  m_EditorClassIdentifier: 
+  plotController: {fileID: 0}
+  transitionType: 0
+  chapterValue: 0
+  stateValue: 0
+  objectIndex: 0
+  objectActive: 0
