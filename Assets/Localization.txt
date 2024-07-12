@@ -18,6 +18,30 @@
                 {
                     "key": "quit",
                     "value": "Quit"
+                },
+                {
+                    "key": "language",
+                    "value": "Language"
+                },
+                {
+                    "key": "input_type",
+                    "value": "Input type"
+                },
+                {
+                    "key": "brightness",
+                    "value": "Brightness"
+                },
+                {
+                    "key": "back",
+                    "value": "Back"
+                },
+                {
+                    "key": "click",
+                    "value": "Click"
+                },
+                {
+                    "key": "swipe",
+                    "value": "Swipe"
                 }
             ]
         },
@@ -39,6 +63,30 @@
                 {
                     "key": "quit",
                     "value": "Выход"
+                },
+                {
+                    "key": "language",
+                    "value": "Язык"
+                },
+                {
+                    "key": "input_type",
+                    "value": "Тип управления"
+                },
+                {
+                    "key": "brightness",
+                    "value": "Яркость"
+                },
+                {
+                    "key": "back",
+                    "value": "Назад"
+                },
+                {
+                    "key": "click",
+                    "value": "Щелчок"
+                },
+                {
+                    "key": "swipe",
+                    "value": "Провести пальцем"
                 }
             ]
         },
@@ -60,6 +108,30 @@
                 {
                     "key": "quit",
                     "value": "Вихід"
+                },
+                {
+                    "key": "language",
+                    "value": "Мова"
+                },
+                {
+                    "key": "input_type",
+                    "value": "Тип управління"
+                },
+                {
+                    "key": "brightness",
+                    "value": "Яскравість"
+                },
+                {
+                    "key": "back",
+                    "value": "Назад"
+                },
+                {
+                    "key": "click",
+                    "value": "Натисніть"
+                },
+                {
+                    "key": "swipe",
+                    "value": "Провести пальцем"
                 }
             ]
         },
@@ -81,6 +153,30 @@
                 {
                     "key": "quit",
                     "value": "그만두다"
+                },
+                {
+                    "key": "language",
+                    "value": "언어"
+                },
+                {
+                    "key": "input_type",
+                    "value": "제어 유형"
+                },
+                {
+                    "key": "brightness",
+                    "value": "명도"
+                },
+                {
+                    "key": "back",
+                    "value": "뒤쪽에"
+                },
+                {
+                    "key": "click",
+                    "value": "딸깍 하는 소리"
+                },
+                {
+                    "key": "swipe",
+                    "value": "강타"
                 }
             ]
         },
@@ -102,6 +198,30 @@
                 {
                     "key": "quit",
                     "value": "辭職"
+                },
+                {
+                    "key": "language",
+                    "value": "語言"
+                },
+                {
+                    "key": "input_type",
+                    "value": "控制類型"
+                },
+                {
+                    "key": "brightness",
+                    "value": "亮度"
+                },
+                {
+                    "key": "back",
+                    "value": "後退"
+                },
+                {
+                    "key": "click",
+                    "value": "點選"
+                },
+                {
+                    "key": "swipe",
+                    "value": "滑動"
                 }
             ]
         }
