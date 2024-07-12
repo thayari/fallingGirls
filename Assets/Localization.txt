@@ -1,0 +1,109 @@
+{
+    "languages": [
+        {
+            "languageCode": "English",
+            "items": [
+                {
+                    "key": "game_name",
+                    "value": "Falling Girls"
+                },
+                {
+                    "key": "settings",
+                    "value": "Settings"
+                },
+                {
+                    "key": "new_game",
+                    "value": "New game"
+                },
+                {
+                    "key": "quit",
+                    "value": "Quit"
+                }
+            ]
+        },
+        {
+            "languageCode": "Russian",
+            "items": [
+                {
+                    "key": "game_name",
+                    "value": "Падающие девочки"
+                },
+                {
+                    "key": "settings",
+                    "value": "Настройки"
+                },
+                {
+                    "key": "new_game",
+                    "value": "Новая игра"
+                },
+                {
+                    "key": "quit",
+                    "value": "Выход"
+                }
+            ]
+        },
+        {
+            "languageCode": "Ukrainian",
+            "items": [
+                {
+                    "key": "game_name",
+                    "value": "Падаючі дівчата"
+                },
+                {
+                    "key": "settings",
+                    "value": "Налаштування"
+                },
+                {
+                    "key": "new_game",
+                    "value": "Нова гра"
+                },
+                {
+                    "key": "quit",
+                    "value": "Вихід"
+                }
+            ]
+        },
+        {
+            "languageCode": "Korean",
+            "items": [
+                {
+                    "key": "game_name",
+                    "value": "떨어지는 소녀들"
+                },
+                {
+                    "key": "settings",
+                    "value": "설정"
+                },
+                {
+                    "key": "new_game",
+                    "value": "새로운 게임"
+                },
+                {
+                    "key": "quit",
+                    "value": "그만두다"
+                }
+            ]
+        },
+        {
+            "languageCode": "ChineseTraditional",
+            "items": [
+                {
+                    "key": "game_name",
+                    "value": "墜落的女孩"
+                },
+                {
+                    "key": "settings",
+                    "value": "設定"
+                },
+                {
+                    "key": "new_game",
+                    "value": "新遊戲"
+                },
+                {
+                    "key": "quit",
+                    "value": "辭職"
+                }
+            ]
+        }
+    ]
+}
