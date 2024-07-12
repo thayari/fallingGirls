@@ -292,8 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropdown: {fileID: 5703806151498671286}
-  _languageDropdownSaveParameter: LanguageDropdown
-  _languageProfile: {fileID: 11400000, guid: 613604eb5ee1a6e479a9b3e57b70192e, type: 2}
+  _languageDropdownSaveParameter: Localization
 --- !u!1 &1754902957
 GameObject:
   m_ObjectHideFlags: 0
