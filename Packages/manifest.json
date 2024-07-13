@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.psyche-games.localization-management": "https://gitlab.com/bordiyan20035/pg-localization-management.git",
+    "com.unity.animation.rigging": "1.2.1",
     "com.unity.cinemachine": "2.9.7",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.2d": "2.0.0",
