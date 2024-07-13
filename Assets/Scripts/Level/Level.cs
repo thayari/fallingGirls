@@ -55,7 +55,6 @@ public class Level : MonoBehaviour
     {
 
         float totalHeight = 0f;
-        Debug.Log("start" + totalHeight);
 
         MeshRenderer[] meshRenderers = segment.GetComponentsInChildren<MeshRenderer>();
 
@@ -63,8 +62,6 @@ public class Level : MonoBehaviour
         {
             totalHeight += meshRenderer.bounds.size.y;
         }
-
-        Debug.Log(totalHeight);
 
         return totalHeight;
     }
