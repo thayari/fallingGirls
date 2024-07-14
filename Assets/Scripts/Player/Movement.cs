@@ -16,6 +16,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _movementVerticalSpeed = 5f;
     [SerializeField] private float _moveLerp = 8f;
 
+    public float verticalSpeed => _movementVerticalSpeed;
+
     private float _moveKeyboardValue;
 
     private Camera _camera;
