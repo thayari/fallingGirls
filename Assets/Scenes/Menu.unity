@@ -226,7 +226,6 @@ GameObject:
   - component: {fileID: 1664376533}
   - component: {fileID: 1664376532}
   - component: {fileID: 1664376534}
-  - component: {fileID: 1664376535}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -272,23 +271,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1664376531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16824f23e834d594d8d965e9f71f2dbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _saveName: Localization
-  <localizationFile>k__BackingField: {fileID: 4900000, guid: 6e62c44cde2cc934a81c8279c18cbea2,
-    type: 3}
-  _currentLanguage: English
---- !u!114 &1664376535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664376531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4795a85b7c87a24e8ced306051bc4b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 0237eb0f42b39bd4d9d92c25cabda908, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _dropdown: {fileID: 5703806151498671286}
@@ -500,6 +483,54 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!1 &2136146976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2136146978}
+  - component: {fileID: 2136146977}
+  m_Layer: 0
+  m_Name: Localization Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2136146977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136146976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16824f23e834d594d8d965e9f71f2dbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _saveName: Localization
+  <localizationFile>k__BackingField: {fileID: 4900000, guid: 6e62c44cde2cc934a81c8279c18cbea2,
+    type: 3}
+  _currentLanguage: English
+--- !u!4 &2136146978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136146976}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1050.4664, y: 1780.1837, z: 0.0007900155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4353780790839701107 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8073475664332215818, guid: 76b21634881e81044bb9b03e371bbc4e,
@@ -779,6 +810,16 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1664376534}
+    - target: {fileID: 5843644592188322609, guid: 76b21634881e81044bb9b03e371bbc4e,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLanguageChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 5843644592188322609, guid: 76b21634881e81044bb9b03e371bbc4e,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PG.LocalizationManagement.LocalizationChanger, PG.LocalizationManagement
+      objectReference: {fileID: 0}
     - target: {fileID: 6219210293372510792, guid: 76b21634881e81044bb9b03e371bbc4e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -793,7 +834,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1664376534}
+      objectReference: {fileID: 0}
     - target: {fileID: 8073475664332215818, guid: 76b21634881e81044bb9b03e371bbc4e,
         type: 3}
       propertyPath: m_Name
@@ -818,4 +859,5 @@ SceneRoots:
   - {fileID: 8377832423866021890}
   - {fileID: 8935437041683875713}
   - {fileID: 1989395925}
+  - {fileID: 2136146978}
   - {fileID: 1664376533}
