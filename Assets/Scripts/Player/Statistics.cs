@@ -41,6 +41,8 @@ public class Statistics : MonoBehaviour
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
         Load();
+
+        Coin.OnCoinTaken += AddMoney;
     }
 
     public void Save()
@@ -62,8 +64,17 @@ public class Statistics : MonoBehaviour
 
     public void AddMoney(int value)
     {
+
         money += value;
         moneyAdded?.Invoke(value);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Coin.OnCoinTaken -= AddMoney;
+        }
     }
 
     [System.Serializable]

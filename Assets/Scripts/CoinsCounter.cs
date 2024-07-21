@@ -8,13 +8,17 @@ public class CoinsCounter : MonoBehaviour
     private void Awake()
     {
         _coinsText.text = _coins.ToString();
-        Coin.OnCoinTaken += () => onCoinTaken();
+        Statistics.Instance.moneyChanged += UpdateCoinsCounter;
     }
 
-    private void onCoinTaken()
+    private void OnDisable()
     {
-        // test
-        _coins += 10;
+        Statistics.Instance.moneyChanged -= UpdateCoinsCounter;
+    }
+
+    private void UpdateCoinsCounter()
+    {
+        _coins = Statistics.Instance.money;
         _coinsText.text = _coins.ToString();
     }
 }

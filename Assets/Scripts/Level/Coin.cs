@@ -3,12 +3,14 @@ using System;
 
 public class Coin : MonoBehaviour
 {
-    public static event Action OnCoinTaken;
+    [SerializeField] private int coinValue;
+    public static event Action<int> OnCoinTaken;
 
     private void OnTriggerEnter(Collider other)
     {
+
         Destroy(gameObject);
 
-        OnCoinTaken?.Invoke();
+        OnCoinTaken?.Invoke(coinValue);
     }
 }
