@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2014,6 +2014,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   segmentPrefabs:
   - {fileID: 4532907041188478175, guid: 5f203b0659df3ca4abc8002b370102eb, type: 3}
+  - {fileID: 4532907041188478175, guid: 393a43b0ca2a5ae41ac0cb4948b478d6, type: 3}
+  - {fileID: 4532907041188478175, guid: edcc5194e2437b54eaa0d9432bbc449c, type: 3}
   numberOfSegments: 10
   segmentParent: {fileID: 533003898}
 --- !u!1 &566446642
