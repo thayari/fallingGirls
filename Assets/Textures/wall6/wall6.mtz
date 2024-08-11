@@ -13,6 +13,7 @@
     <Blur6Contrast>-3.117647</Blur6Contrast>
     <FinalContrast>2.173</FinalContrast>
     <FinalContrastText>2.173</FinalContrastText>
+    <FinalBiasText>0.0</FinalBiasText>
     <FinalGain>-0.168</FinalGain>
     <FinalGainText>-0.168</FinalGainText>
     <SampleColor1>
@@ -59,7 +60,7 @@
       <y>0</y>
     </SampleUV>
   </MS>
-  <metallicMapPath>wall6_metallic.png</metallicMapPath>
+  <metallicMapPath>null</metallicMapPath>
   <SS>
     <SampleColor1>
       <r>0</r>
@@ -92,7 +93,7 @@
       <y>0</y>
     </SampleUV3>
   </SS>
-  <smoothnessMapPath>wall6_smoothness.png</smoothnessMapPath>
+  <smoothnessMapPath>null</smoothnessMapPath>
   <ES>
     <Blur0Contrast>1</Blur0Contrast>
     <Blur0Weight>0.15</Blur0Weight>
@@ -105,7 +106,7 @@
     <FinalContrast>4</FinalContrast>
     <FinalContrastText>4</FinalContrastText>
   </ES>
-  <edgeMapPath>wall6_edge.png</edgeMapPath>
+  <edgeMapPath>null</edgeMapPath>
   <AOS>
     <Spread>50</Spread>
     <FinalBias>-0.04807692</FinalBias>

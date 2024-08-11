@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    public GameObject[] segmentPrefabs;
-    public int numberOfSegments = 10;
-    public Transform segmentParent;
+    [SerializeField] private List<GameObject> sequence;
+    [SerializeField] private Transform segmentParent;
+    private int currentSegmentIndex = 0;
     private List<GameObject> spawnedSegments = new List<GameObject>();
 
     private void Awake()
@@ -16,16 +16,19 @@ public class Level : MonoBehaviour
 
     private async void Init()
     {
-        for (int i = 0; i < numberOfSegments; i++)
+        if (sequence.Count > 0)
         {
-            await Task.Delay(30);
-            SpawnSegment();
+            for (int i = 0; i < sequence.Count; i++)
+            {
+                await Task.Delay(30);
+                SpawnSegment();
+            }
         }
     }
 
     private void SpawnSegment()
     {
-        GameObject segmentPrefab = segmentPrefabs[Random.Range(0, segmentPrefabs.Length)];
+        GameObject segmentPrefab = sequence[currentSegmentIndex];
 
         Vector3 spawnPosition = CalculateSpawnPosition();
 
@@ -34,6 +37,8 @@ public class Level : MonoBehaviour
         newSegment.transform.SetParent(segmentParent.transform);
 
         spawnedSegments.Add(newSegment);
+
+        currentSegmentIndex = (currentSegmentIndex + 1);
     }
 
     private Vector3 CalculateSpawnPosition()
