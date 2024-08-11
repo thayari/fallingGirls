@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SegmentInfo
+{
+    public GameObject prefab;
+    public int count;
+}
+
+
 public class Level : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> sequence;
+    [SerializeField] private List<SegmentInfo> sequence;
     [SerializeField] private Transform segmentParent;
     private int currentSegmentIndex = 0;
     private List<GameObject> spawnedSegments = new List<GameObject>();
@@ -20,16 +28,17 @@ public class Level : MonoBehaviour
         {
             for (int i = 0; i < sequence.Count; i++)
             {
-                await Task.Delay(30);
-                SpawnSegment();
+                for (int j = 0; j < sequence[i].count; j++)
+                {
+                    await Task.Delay(30);
+                    SpawnSegment(sequence[i].prefab);
+                }
             }
         }
     }
 
-    private void SpawnSegment()
+    private void SpawnSegment(GameObject segmentPrefab)
     {
-        GameObject segmentPrefab = sequence[currentSegmentIndex];
-
         Vector3 spawnPosition = CalculateSpawnPosition();
 
         GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, Quaternion.identity);
@@ -38,7 +47,7 @@ public class Level : MonoBehaviour
 
         spawnedSegments.Add(newSegment);
 
-        currentSegmentIndex = (currentSegmentIndex + 1);
+        currentSegmentIndex++;
     }
 
     private Vector3 CalculateSpawnPosition()
