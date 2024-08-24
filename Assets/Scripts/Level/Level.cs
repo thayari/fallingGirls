@@ -16,6 +16,14 @@ public class Level : MonoBehaviour
     [SerializeField] private Transform segmentParent;
     private int currentSegmentIndex = 0;
     private List<GameObject> spawnedSegments = new List<GameObject>();
+    private float totalLevelHeight = 0;
+
+    public event System.Action OnLevelGenerationCompleted;
+
+    public float TotalLevelHeight
+    {
+        get { return totalLevelHeight; }
+    }
 
     private void Awake()
     {
@@ -34,6 +42,8 @@ public class Level : MonoBehaviour
                     SpawnSegment(sequence[i].prefab);
                 }
             }
+
+            OnLevelGenerationCompleted?.Invoke();
         }
     }
 
@@ -47,6 +57,8 @@ public class Level : MonoBehaviour
 
         spawnedSegments.Add(newSegment);
 
+        totalLevelHeight += GetSegmentHeight(newSegment);
+
         currentSegmentIndex++;
     }
 
@@ -55,8 +67,11 @@ public class Level : MonoBehaviour
         if (spawnedSegments.Count > 0)
         {
             GameObject lastSegment = spawnedSegments[spawnedSegments.Count - 1];
+
             float lastSegmentHeight = GetSegmentHeight(lastSegment);
+
             Vector3 lastSegmentPosition = lastSegment.transform.position;
+
             return lastSegmentPosition + new Vector3(0, lastSegmentHeight, 0);
         }
         else
@@ -68,15 +83,15 @@ public class Level : MonoBehaviour
     private float GetSegmentHeight(GameObject segment)
     {
 
-        float totalHeight = 0f;
+        float totalSegmentHeight = 0f;
 
         MeshRenderer[] meshRenderers = segment.GetComponentsInChildren<MeshRenderer>();
 
         foreach (MeshRenderer meshRenderer in meshRenderers)
         {
-            totalHeight += meshRenderer.bounds.size.y;
+            totalSegmentHeight += meshRenderer.bounds.size.y;
         }
 
-        return totalHeight;
+        return totalSegmentHeight;
     }
 }
