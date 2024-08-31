@@ -34,12 +34,12 @@ public class Level : MonoBehaviour
     {
         if (sequence.Count > 0)
         {
-            for (int i = 0; i < sequence.Count; i++)
+            foreach (var item in sequence)
             {
-                for (int j = 0; j < sequence[i].count; j++)
+                for (int j = 0; j < item.count; j++)
                 {
                     await Task.Delay(30);
-                    SpawnSegment(sequence[i].prefab);
+                    SpawnSegment(item.prefab);
                 }
             }
 
