@@ -86,8 +86,7 @@ public class Obstacles : MonoBehaviour
             {
                 if (containerTransform.childCount == 0)
                 {
-                    GameObject obstacleInstance = Instantiate(obstaclePrefab, containerTransform.position, Quaternion.identity);
-                    obstacleInstance.transform.SetParent(containerTransform);
+                    GameObject obstacleInstance = Instantiate(obstaclePrefab, containerTransform.position, containerTransform.rotation, containerTransform);
                 }
             }
         }

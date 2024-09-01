@@ -6,7 +6,7 @@ public class Coin : MonoBehaviour
     [SerializeField] private int coinValue;
     public static event Action<int> OnCoinTaken;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
 
         Destroy(gameObject);

@@ -33,33 +33,34 @@ public class Movement : MonoBehaviour
     }
     void OnMove()
     {
-        switch (_playerInput.currentControlScheme)
+        if (Touchscreen.current != null && Touchscreen.current.IsActuated())
         {
-            case "Android":
-                _hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(new Vector3(_moveAction.action.ReadValue<float>(), _player.position.y, _player.position.z)), Vector2.zero);
+            _hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(new Vector3(_moveAction.action.ReadValue<float>(), _player.position.y, _player.position.z)), Vector2.zero);
 
-                if (_hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
-                {
-                    Debug.Log("Target Position: " + _hit.collider.gameObject.transform.position);
-                    _player.position = Vector3.Lerp(_player.position, new Vector3(_hit.point.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
-                }
-                break;
-            case "Mouse":
-                _hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(new Vector3(_moveAction.action.ReadValue<float>(), _player.position.y, _player.position.z)), Vector2.zero);
+            if (_hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Target Position: " + _hit.collider.gameObject.transform.position);
+                _player.position = Vector3.Lerp(_player.position, new Vector3(_hit.point.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+            }
+        }
+        if (Mouse.current != null && Mouse.current.IsActuated())
+        {
+            _hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(new Vector3(_moveAction.action.ReadValue<float>(), _player.position.y, _player.position.z)), Vector2.zero);
 
-                if (_hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
-                {
-                    Debug.Log("Target Position: " + _hit.collider.gameObject.transform.position);
-                    _player.position = Vector3.Lerp(_player.position, new Vector3(_hit.point.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
-                }
-                break;
-            case "Gamepad":
-                _player.Translate(Vector2.right * _moveAction.action.ReadValue<float>() * _movementGamepadSpeed * Time.deltaTime);
-                break;
-            case "Keyboard":
-                _moveKeyboardValue = Mathf.Lerp(_moveKeyboardValue, _moveAction.action.ReadValue<float>(), _moveLerp * Time.deltaTime);
-                _player.Translate(Vector2.right * _moveKeyboardValue * _movementKeyboardSpeed * Time.deltaTime);
-                break;
+            if (_hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
+            {
+                Debug.Log("Target Position: " + _hit.collider.gameObject.transform.position);
+                _player.position = Vector3.Lerp(_player.position, new Vector3(_hit.point.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+            }
+        }
+        if (Gamepad.current != null && Gamepad.current.IsActuated())
+        {
+            _player.Translate(Vector2.right * _moveAction.action.ReadValue<float>() * _movementGamepadSpeed * Time.deltaTime);
+        }
+        if (Keyboard.current != null && Keyboard.current.IsActuated())
+        {
+            _moveKeyboardValue = Mathf.Lerp(_moveKeyboardValue, _moveAction.action.ReadValue<float>(), _moveLerp * Time.deltaTime);
+            _player.Translate(Vector2.right * _moveKeyboardValue * _movementKeyboardSpeed * Time.deltaTime);
         }
     }
 }

@@ -51,9 +51,9 @@ public class Level : MonoBehaviour
     {
         Vector3 spawnPosition = CalculateSpawnPosition();
 
-        GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, Quaternion.identity);
+        GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, segmentParent.transform.rotation, segmentParent.transform);
 
-        newSegment.transform.SetParent(segmentParent.transform);
+        //newSegment.transform.SetParent(segmentParent.transform);
 
         spawnedSegments.Add(newSegment);
 
