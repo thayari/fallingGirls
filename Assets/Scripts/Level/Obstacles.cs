@@ -49,8 +49,6 @@ public class Obstacles : MonoBehaviour
 
             float intervalSize = (level.TotalLevelHeight - offset) / obstaclesCount;
 
-            Debug.Log(intervalSize);
-
             float currentYPosition = offset;
 
             foreach (var item in sequence)
@@ -60,6 +58,8 @@ public class Obstacles : MonoBehaviour
                     GameObject container = new GameObject("ObstacleContainer_" + i);
 
                     container.transform.position = new Vector3(0, currentYPosition, 0);
+
+                    container.transform.SetParent(this.transform);
 
                     obstacleContainers.Add(new Tuple<Transform, GameObject>(container.transform, item.prefab));
 
