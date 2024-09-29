@@ -53,8 +53,8 @@ public class Obstacles : MonoBehaviour
                 {
                     GameObject container = new GameObject("ObstacleContainer_" + i);
 
-                    container.transform.SetParent(this.transform);
-                    container.transform.position = new Vector3(0, currentYPosition, this.transform.position.z);
+                    container.transform.SetParent(transform);
+                    container.transform.position = new Vector3(0, currentYPosition, transform.position.z);
 
 
                     GameObject item = obstaclesList[Random.Range(0, obstaclesList.Count)];
@@ -85,14 +85,7 @@ public class Obstacles : MonoBehaviour
                 {
                     GameObject obstacleInstance = Instantiate(obstaclePrefab, containerTransform.position, containerTransform.rotation, containerTransform);
 
-                    int randomMirror = Random.Range(0, 2);
-                    if (randomMirror == 0)
-                    {
-                        obstacleInstance.transform.eulerAngles = Vector3.zero;
-                    } else if (randomMirror == 1)
-                    {
-                        obstacleInstance.transform.eulerAngles = new Vector3(0, 180, 0); // Mirror to left
-                    }
+                    obstacleInstance.transform.eulerAngles = new Vector3(0, Random.Range(0, 2) == 0 ? 180 : 0, 0); // Mirror to left
                 }
 
             }

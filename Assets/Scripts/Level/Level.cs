@@ -85,11 +85,11 @@ public class Level : MonoBehaviour
 
         float totalSegmentHeight = 0f;
 
-        MeshRenderer[] meshRenderers = segment.GetComponentsInChildren<MeshRenderer>();
+        Renderer[] renderers = segment.GetComponentsInChildren<Renderer>();
 
-        foreach (MeshRenderer meshRenderer in meshRenderers)
+        foreach (Renderer renderer in renderers)
         {
-            totalSegmentHeight += meshRenderer.bounds.size.y;
+            totalSegmentHeight += renderer.bounds.size.y;
         }
 
         return totalSegmentHeight;

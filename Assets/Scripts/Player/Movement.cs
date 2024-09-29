@@ -21,36 +21,36 @@ public class Movement : MonoBehaviour
     private float _moveKeyboardValue;
 
     private Camera _camera;
-    private RaycastHit2D _hit;
+
     private void OnEnable()
     {
         _camera = Camera.main;
     }
+
     private void Update()
     {
         _player.Translate(Vector3.up * _movementVerticalSpeed * Time.deltaTime);
         OnMove();
     }
+
     void OnMove()
     {
         if (Touchscreen.current != null && Touchscreen.current.IsActuated())
         {
-            _hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(new Vector3(_moveAction.action.ReadValue<float>(), _player.position.y, _player.position.z)), Vector2.zero);
-
-            if (_hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
+            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            Vector2 worldPosition = _camera.ScreenToWorldPoint(new Vector2(touchPosition.x, touchPosition.y));
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("Target Position: " + _hit.collider.gameObject.transform.position);
-                _player.position = Vector3.Lerp(_player.position, new Vector3(_hit.point.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+                _player.position = Vector2.Lerp(_player.position, new Vector2(worldPosition.x, _player.position.y), _moveLerp * Time.deltaTime);
             }
         }
         if (Mouse.current != null && Mouse.current.IsActuated())
         {
-            _hit = Physics2D.Raycast(_camera.ScreenToWorldPoint(new Vector3(_moveAction.action.ReadValue<float>(), _player.position.y, _player.position.z)), Vector2.zero);
-
-            if (_hit.collider != null && !EventSystem.current.IsPointerOverGameObject())
+            Vector3 mousePosition = Mouse.current.position.ReadValue();
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector2(mousePosition.x, mousePosition.y));
+            if (!EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("Target Position: " + _hit.collider.gameObject.transform.position);
-                _player.position = Vector3.Lerp(_player.position, new Vector3(_hit.point.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+                _player.position = Vector2.Lerp(_player.position, new Vector2(worldPosition.x, _player.position.y), _moveLerp * Time.deltaTime);
             }
         }
         if (Gamepad.current != null && Gamepad.current.IsActuated())

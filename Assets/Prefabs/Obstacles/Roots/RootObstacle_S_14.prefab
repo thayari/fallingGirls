@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5080000786260318267}
   - component: {fileID: 630110111182168232}
   - component: {fileID: 5366531292998557831}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,7 +142,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6805514654375497359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RootObstacle_S_14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
