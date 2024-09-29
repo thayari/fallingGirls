@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -18,8 +17,6 @@ public class Movement : MonoBehaviour
 
     public float verticalSpeed => _movementVerticalSpeed;
 
-    private float _moveKeyboardValue;
-
     private Camera _camera;
 
     private void OnEnable()
@@ -29,6 +26,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        // Движение персонажа по оси Y
         _player.Translate(Vector3.up * _movementVerticalSpeed * Time.deltaTime);
         OnMove();
     }
@@ -37,20 +35,22 @@ public class Movement : MonoBehaviour
     {
         if (Touchscreen.current != null && Touchscreen.current.IsActuated())
         {
-            Vector2 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            Vector2 worldPosition = _camera.ScreenToWorldPoint(new Vector2(touchPosition.x, touchPosition.y));
+            Vector3 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, Mathf.Abs(_camera.transform.position.z))); // Убедитесь, что Z положителен
+            Debug.Log("Touch Position: " + touchPosition + ", World Position: " + worldPosition);
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                _player.position = Vector2.Lerp(_player.position, new Vector2(worldPosition.x, _player.position.y), _moveLerp * Time.deltaTime);
+                _player.position = Vector3.Lerp(_player.position, new Vector3(worldPosition.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
             }
         }
         if (Mouse.current != null && Mouse.current.IsActuated())
         {
             Vector3 mousePosition = Mouse.current.position.ReadValue();
-            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector2(mousePosition.x, mousePosition.y));
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Mathf.Abs(_camera.transform.position.z))); // Убедитесь, что Z положителен
+            Debug.Log("Mouse Position: " + mousePosition + ", World Position: " + worldPosition);
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                _player.position = Vector2.Lerp(_player.position, new Vector2(worldPosition.x, _player.position.y), _moveLerp * Time.deltaTime);
+                _player.position = Vector3.Lerp(_player.position, new Vector3(worldPosition.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
             }
         }
         if (Gamepad.current != null && Gamepad.current.IsActuated())
@@ -59,7 +59,7 @@ public class Movement : MonoBehaviour
         }
         if (Keyboard.current != null && Keyboard.current.IsActuated())
         {
-            _moveKeyboardValue = Mathf.Lerp(_moveKeyboardValue, _moveAction.action.ReadValue<float>(), _moveLerp * Time.deltaTime);
+            float _moveKeyboardValue = Mathf.Lerp(0, _moveAction.action.ReadValue<float>(), _moveLerp * Time.deltaTime);
             _player.Translate(Vector2.right * _moveKeyboardValue * _movementKeyboardSpeed * Time.deltaTime);
         }
     }
