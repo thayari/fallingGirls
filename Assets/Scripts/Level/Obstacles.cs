@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public class ObstacleInfo
@@ -13,7 +13,7 @@ public class ObstacleInfo
 
 public class Obstacles : MonoBehaviour
 {
-    [SerializeField] private List<ObstacleInfo> obstaclesList;
+    [SerializeField] private List<GameObject> obstaclesList = new List<GameObject>();
     [SerializeField] private int obstaclesCount = 100;
     [SerializeField] private float generateDistance = 5f;
     [SerializeField] private float removeDistance = 2f;
@@ -57,9 +57,9 @@ public class Obstacles : MonoBehaviour
                     container.transform.position = new Vector3(0, currentYPosition, this.transform.position.z);
 
 
-                    ObstacleInfo item = obstaclesList[UnityEngine.Random.Range(0, obstaclesList.Count)];
+                    GameObject item = obstaclesList[Random.Range(0, obstaclesList.Count)];
 
-                    obstacleContainers.Add(new Tuple<Transform, GameObject>(container.transform, item.prefab));
+                    obstacleContainers.Add(new Tuple<Transform, GameObject>(container.transform, item));
 
                     currentYPosition += intervalSize;
                 }
@@ -85,7 +85,14 @@ public class Obstacles : MonoBehaviour
                 {
                     GameObject obstacleInstance = Instantiate(obstaclePrefab, containerTransform.position, containerTransform.rotation, containerTransform);
 
-                    obstacleInstance.transform.localScale = new Vector3(UnityEngine.Random.Range(0, 2) == 0 ? -1 : 1, 1, 1); // Mirror to left
+                    int randomMirror = Random.Range(0, 2);
+                    if (randomMirror == 0)
+                    {
+                        obstacleInstance.transform.eulerAngles = Vector3.zero;
+                    } else if (randomMirror == 1)
+                    {
+                        obstacleInstance.transform.eulerAngles = new Vector3(0, 180, 0); // Mirror to left
+                    }
                 }
 
             }
