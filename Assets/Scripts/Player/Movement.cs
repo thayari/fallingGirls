@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float _movementGamepadSpeed = 4f;
     [SerializeField] private float _movementKeyboardSpeed = 4f;
     [SerializeField] private float _movementVerticalSpeed = 5f;
-    [SerializeField] private float _moveLerp = 8f;
+    [SerializeField] private float _moveLerp = 1f;
 
     public float verticalSpeed => _movementVerticalSpeed;
 
@@ -26,7 +26,6 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        // Движение персонажа по оси Y
         _player.Translate(Vector3.up * _movementVerticalSpeed * Time.deltaTime);
         OnMove();
     }
@@ -36,7 +35,7 @@ public class Movement : MonoBehaviour
         if (Touchscreen.current != null && Touchscreen.current.IsActuated())
         {
             Vector3 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
-            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, Mathf.Abs(_camera.transform.position.z))); // Убедитесь, что Z положителен
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, Mathf.Abs(_camera.transform.position.z)));
             Debug.Log("Touch Position: " + touchPosition + ", World Position: " + worldPosition);
             if (!EventSystem.current.IsPointerOverGameObject())
             {
@@ -46,7 +45,7 @@ public class Movement : MonoBehaviour
         if (Mouse.current != null && Mouse.current.IsActuated())
         {
             Vector3 mousePosition = Mouse.current.position.ReadValue();
-            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Mathf.Abs(_camera.transform.position.z))); // Убедитесь, что Z положителен
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Mathf.Abs(_camera.transform.position.z))); 
             Debug.Log("Mouse Position: " + mousePosition + ", World Position: " + worldPosition);
             if (!EventSystem.current.IsPointerOverGameObject())
             {

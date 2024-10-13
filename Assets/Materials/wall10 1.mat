@@ -7,22 +7,18 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wall10
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Name: wall10 1
+  m_Shader: {fileID: -6465566751694194690, guid: 7ef747f67f315454e9f6497a059b1138,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _NORMALMAP
-  - _OCCLUSIONMAP
-  - _PARALLAXMAP
-  - _SPECULAR_SETUP
+  m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2000
-  stringTagMap:
-    RenderType: Opaque
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -35,6 +31,10 @@ Material:
     - _BaseMap:
         m_Texture: {fileID: 2800000, guid: 0ab9836ce0ab2c94f8005a6fcfdd871e, type: 3}
         m_Scale: {x: 6, y: 12}
+        m_Offset: {x: 0, y: 0}
+    - _BaseTexture:
+        m_Texture: {fileID: 2800000, guid: 0ab9836ce0ab2c94f8005a6fcfdd871e, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 2800000, guid: 00ed2069327e27d41b92baf2a0abaf0f, type: 3}
@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeightMap:
-        m_Texture: {fileID: 2800000, guid: 71536c5a90b211a458996be438426888, type: 3}
+        m_Texture: {fileID: 2800000, guid: 098b508dcf4d7dc43b928c3a6d9305ec, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -74,6 +74,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 2d814514ed445ac4c85403aa24d15c58, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 00ed2069327e27d41b92baf2a0abaf0f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -140,12 +144,12 @@ Material:
     - _Normal_2_Strengrh: 1
     - _Normal_Strengrh: 1
     - _OcclusionStrength: 1
-    - _Parallax: 0.0596
+    - _Parallax: 0.03
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SMOOTHNESS_ACTIVE: 1
-    - _Smoothness: 0.164
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -156,12 +160,14 @@ Material:
     - _ZWrite: 1
     - _ZWriteControl: 0
     m_Colors:
-    - _BaseColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
+    - _BaseColor: {r: 0.7264151, g: 0.7264151, b: 0.7264151, a: 1}
     - _Color: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emission_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Height_Tiling: {r: 2, g: 4, b: 0, a: 0}
-    - _SpecColor: {r: 0.3301887, g: 0.3301887, b: 0.3301887, a: 1}
+    - _Offset: {r: 0, g: 0, b: 0, a: 0}
+    - _SpecColor: {r: 0.48264506, g: 0.4911409, b: 0.5471698, a: 1}
+    - _Tiling: {r: 6, g: 12, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8799987981601863626
 MonoBehaviour:
