@@ -19,6 +19,9 @@ public class Movement : MonoBehaviour
 
     private Camera _camera;
 
+    [HideInInspector] public bool canMoveLeft = true;
+    [HideInInspector] public bool canMoveRight = true;
+
     private void OnEnable()
     {
         _camera = Camera.main;
@@ -36,26 +39,46 @@ public class Movement : MonoBehaviour
         {
             Vector3 touchPosition = Touchscreen.current.primaryTouch.position.ReadValue();
             Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(touchPosition.x, touchPosition.y, Mathf.Abs(_camera.transform.position.z)));
-            Debug.Log("Touch Position: " + touchPosition + ", World Position: " + worldPosition);
+            //Debug.Log("Touch Position: " + touchPosition + ", World Position: " + worldPosition);
+
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                _player.position = Vector3.Lerp(_player.position, new Vector3(worldPosition.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+                float targetX = worldPosition.x;
+
+                if ((targetX < _player.position.x && canMoveLeft) || (targetX > _player.position.x && canMoveRight))
+                {
+                    _player.position = Vector3.Lerp(_player.position, new Vector3(targetX, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+                }
             }
         }
+
         if (Mouse.current != null && Mouse.current.IsActuated())
         {
             Vector3 mousePosition = Mouse.current.position.ReadValue();
-            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Mathf.Abs(_camera.transform.position.z))); 
-            Debug.Log("Mouse Position: " + mousePosition + ", World Position: " + worldPosition);
+            Vector3 worldPosition = _camera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Mathf.Abs(_camera.transform.position.z)));
+            //Debug.Log("Mouse Position: " + mousePosition + ", World Position: " + worldPosition);
+
             if (!EventSystem.current.IsPointerOverGameObject())
             {
-                _player.position = Vector3.Lerp(_player.position, new Vector3(worldPosition.x, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+                float targetX = worldPosition.x;
+
+                if ((targetX < _player.position.x && canMoveLeft) || (targetX > _player.position.x && canMoveRight))
+                {
+                    _player.position = Vector3.Lerp(_player.position, new Vector3(targetX, _player.position.y, _player.position.z), _moveLerp * Time.deltaTime);
+                }
             }
         }
+
         if (Gamepad.current != null && Gamepad.current.IsActuated())
         {
-            _player.Translate(Vector2.right * _moveAction.action.ReadValue<float>() * _movementGamepadSpeed * Time.deltaTime);
+            float moveInput = _moveAction.action.ReadValue<float>();
+
+            if ((moveInput < 0 && canMoveLeft) || (moveInput > 0 && canMoveRight))
+            {
+                _player.Translate(Vector2.right * moveInput * _movementGamepadSpeed * Time.deltaTime);
+            }
         }
+
         if (Keyboard.current != null && Keyboard.current.IsActuated())
         {
             float _moveKeyboardValue = Mathf.Lerp(0, _moveAction.action.ReadValue<float>(), _moveLerp * Time.deltaTime);
