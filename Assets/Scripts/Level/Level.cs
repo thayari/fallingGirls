@@ -83,15 +83,28 @@ public class Level : MonoBehaviour
     private float GetSegmentHeight(GameObject segment)
     {
 
-        float totalSegmentHeight = 0f;
+        //float totalSegmentHeight = 0f;
 
-        Renderer[] renderers = segment.GetComponentsInChildren<Renderer>();
+        //Renderer[] renderers = segment.GetComponentsInChildren<Renderer>();
 
-        foreach (Renderer renderer in renderers)
+        //foreach (Renderer renderer in renderers)
+        //{
+        //    totalSegmentHeight += renderer.bounds.size.y;
+        //}
+
+        //return totalSegmentHeight;
+
+        BoxCollider2D boxCollider = segment.GetComponent<BoxCollider2D>();
+
+        if (boxCollider != null)
         {
-            totalSegmentHeight += renderer.bounds.size.y;
+            float segmentHeight = boxCollider.size.y;
+            return segmentHeight;
+        }
+        else
+        {
+            return 0;
         }
 
-        return totalSegmentHeight;
     }
 }
