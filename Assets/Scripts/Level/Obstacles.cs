@@ -68,8 +68,8 @@ public class Obstacles : MonoBehaviour
 
     void Update()
     {
-        GenerateObstacles();
-        RemoveObstacles();
+        //GenerateObstacles();
+        //RemoveObstacles();
     }
 
     void GenerateObstacles()
