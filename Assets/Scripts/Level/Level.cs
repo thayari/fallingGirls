@@ -2,28 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class SegmentInfo
-{
-    public GameObject prefab;
-    public int count;
-}
-
-
 public class Level : MonoBehaviour
 {
-    [SerializeField] private List<SegmentInfo> sequence;
+    [SerializeField] private LevelConfig levelConfig;
     [SerializeField] private Transform segmentParent;
     private int currentSegmentIndex = 0;
     private List<GameObject> spawnedSegments = new List<GameObject>();
     private float totalLevelHeight = 0;
+    private float levelWidth = 0;
 
     public event System.Action OnLevelGenerationCompleted;
 
-    public float TotalLevelHeight
-    {
-        get { return totalLevelHeight; }
-    }
+    public float TotalLevelHeight { get { return totalLevelHeight; } }
+
+    public float LevelWidth { get { return levelWidth; } }
+
+    public LevelGrid levelGrid;
 
     private void Awake()
     {
@@ -32,9 +26,9 @@ public class Level : MonoBehaviour
 
     private async void Init()
     {
-        if (sequence.Count > 0)
+        if (levelConfig != null && levelConfig.GetSequence().Count > 0)
         {
-            foreach (var item in sequence)
+            foreach (var item in levelConfig.GetSequence())
             {
                 for (int j = 0; j < item.count; j++)
                 {
@@ -43,7 +37,13 @@ public class Level : MonoBehaviour
                 }
             }
 
+            levelGrid = new LevelGrid(this.LevelWidth, this.totalLevelHeight);
+
             OnLevelGenerationCompleted?.Invoke();
+        }
+        else
+        {
+            Debug.LogWarning("LevelConfig is not set or empty!");
         }
     }
 
@@ -52,8 +52,6 @@ public class Level : MonoBehaviour
         Vector3 spawnPosition = CalculateSpawnPosition();
 
         GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, segmentParent.transform.rotation, segmentParent.transform);
-
-        //newSegment.transform.SetParent(segmentParent.transform);
 
         spawnedSegments.Add(newSegment);
 
@@ -82,23 +80,18 @@ public class Level : MonoBehaviour
 
     private float GetSegmentHeight(GameObject segment)
     {
-
-        //float totalSegmentHeight = 0f;
-
-        //Renderer[] renderers = segment.GetComponentsInChildren<Renderer>();
-
-        //foreach (Renderer renderer in renderers)
-        //{
-        //    totalSegmentHeight += renderer.bounds.size.y;
-        //}
-
-        //return totalSegmentHeight;
-
         BoxCollider2D boxCollider = segment.GetComponent<BoxCollider2D>();
 
         if (boxCollider != null)
         {
+            float segmentWidth = boxCollider.size.x;
+            if (levelWidth < segmentWidth)
+            {
+                levelWidth = segmentWidth;
+            }
+
             float segmentHeight = boxCollider.size.y;
+            
             return segmentHeight;
         }
         else

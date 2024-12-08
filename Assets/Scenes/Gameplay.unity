@@ -764,28 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6bf08091ca19448b6a344f221af3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sequence:
-  - prefab: {fileID: 4064708768564486684, guid: 957e2b7ee3c6d8a4ca0725649372c5e1,
-      type: 3}
-    count: 1
-  - prefab: {fileID: 4064708768564486684, guid: 890a6634fd8d9684dac5f752a7d191d6,
-      type: 3}
-    count: 1
-  - prefab: {fileID: 4064708768564486684, guid: e8d9c2afe78ab4242b3a87d7633519c7,
-      type: 3}
-    count: 1
-  - prefab: {fileID: 2256793099721836935, guid: 3836891049c3cd04bbafa181fd08f4fb,
-      type: 3}
-    count: 1
-  - prefab: {fileID: 5271997711766356883, guid: 9fd858b937afabe46b6448d7ef640eeb,
-      type: 3}
-    count: 1
-  - prefab: {fileID: 5176929067982876050, guid: 2a7b78c666a01a944b66a402721d3534,
-      type: 3}
-    count: 1
-  - prefab: {fileID: 4532907041188478175, guid: be965abc4ee260a4f82d280687833e55,
-      type: 3}
-    count: 1
+  levelConfig: {fileID: 11400000, guid: 47cd3649ff978fa4a82f6c5a4029b200, type: 2}
   segmentParent: {fileID: 533003898}
 --- !u!1 &566446642
 GameObject:
@@ -1131,6 +1110,66 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2db810ffa402b5848b926d5cff1a57af, type: 3}
+--- !u!1 &754980040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 754980043}
+  - component: {fileID: 754980042}
+  - component: {fileID: 754980041}
+  m_Layer: 0
+  m_Name: VisualScripting SceneVariables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &754980041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765181c9ef4b24d32a4f7cbd2ef370dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &754980042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
+    _objectReferences: []
+--- !u!4 &754980043
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754980040}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &782920611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1242,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1091.3329, y: 882.1679, z: 0.012152016}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &786585791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 786585792}
+  m_Layer: 0
+  m_Name: ObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &786585792
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786585791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 600, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3072,3 +3142,5 @@ SceneRoots:
   - {fileID: 596710674}
   - {fileID: 1485107554}
   - {fileID: 997856771}
+  - {fileID: 786585792}
+  - {fileID: 754980043}
