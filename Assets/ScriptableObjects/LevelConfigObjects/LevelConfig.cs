@@ -8,7 +8,7 @@ public class SegmentInfo
     public int count;
 }
 
-[CreateAssetMenu(fileName = "LevelConfig", menuName = "ScriptableObjects/LevelConfig")]
+[CreateAssetMenu(fileName = "LevelConfig", menuName = "Scriptable Objects/LevelConfig")]
 public class LevelConfig : ScriptableObject
 {
     [SerializeField] private List<SegmentInfo> sequence;
