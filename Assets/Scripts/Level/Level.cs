@@ -37,7 +37,7 @@ public class Level : MonoBehaviour
                 }
             }
 
-            levelGrid = new LevelGrid(this.LevelWidth, this.totalLevelHeight);
+            //levelGrid = new LevelGrid(this.LevelWidth, this.totalLevelHeight);
 
             OnLevelGenerationCompleted?.Invoke();
         }
@@ -99,5 +99,10 @@ public class Level : MonoBehaviour
             return 0;
         }
 
+    }
+
+    public LevelConfig GetLevelConfig()
+    {
+        return levelConfig;
     }
 }

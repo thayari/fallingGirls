@@ -13,11 +13,10 @@ public class ObstacleInfo
 
 public class Obstacles : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> obstaclesList = new List<GameObject>();
     [SerializeField] private int obstaclesCount = 100;
     [SerializeField] private float generateDistance = 5f;
     [SerializeField] private float removeDistance = 2f;
-    [SerializeField] private float offset = 100f;
+    [SerializeField] private float offset = 100f; // offset from the bottom of a level, where obstacles start to appear
     [SerializeField] private Level level;
 
     private List<Tuple<Transform, GameObject>> obstacleContainers;
@@ -34,6 +33,7 @@ public class Obstacles : MonoBehaviour
     private void HandleLevelGenerationCompleted()
     {
         Init();
+        Debug.Log("Init obstacles generation");
     }
 
     private void OnDestroy()
@@ -43,26 +43,46 @@ public class Obstacles : MonoBehaviour
 
     private void Init()
     {
-        if (obstaclesList.Count > 0)
+        LevelConfig levelConfig = level.GetLevelConfig();
+        List<ObstaclesInfo> obstaclesList = levelConfig.GetObstaclesList();
+        List<DifficultyZonesInfo> difficultyZonesList = levelConfig.GetDifficultyZonesList();
+
+        if (obstaclesList.Count > 0 && difficultyZonesList.Count > 0)
         {
-            float intervalSize = (level.TotalLevelHeight - offset) / obstaclesCount;
+            for (int i = 0; i < difficultyZonesList.Count; i++)
+            {
+                DifficultyZonesInfo currentDifficultyZone = difficultyZonesList[i];
 
-            float currentYPosition = offset;
-
-                for (int i = 0; i < obstaclesCount; i++)
+                List<ObstaclesInfo> currentObstacles = new List<ObstaclesInfo>();
+                foreach (ObstaclesInfo obstacle in obstaclesList)
                 {
-                    GameObject container = new GameObject("ObstacleContainer_" + i);
-
-                    container.transform.SetParent(transform);
-                    container.transform.position = new Vector3(0, currentYPosition, transform.position.z);
-
-
-                    GameObject item = obstaclesList[Random.Range(0, obstaclesList.Count)];
-
-                    obstacleContainers.Add(new Tuple<Transform, GameObject>(container.transform, item));
-
-                    currentYPosition += intervalSize;
+                    if (obstacle.difficulty == currentDifficultyZone.difficultyLevel)
+                    {
+                        currentObstacles.Add(obstacle);
+                    }
                 }
+
+                Debug.Log("Difficulty " + i);
+
+            }
+            //float intervalSize = (level.TotalLevelHeight - offset) / obstaclesCount;
+
+            //float currentYPosition = offset;
+
+            //    for (int i = 0; i < obstaclesCount; i++)
+            //    {
+            //        GameObject container = new GameObject("ObstacleContainer_" + i);
+
+            //        container.transform.SetParent(transform);
+            //        container.transform.position = new Vector3(0, currentYPosition, transform.position.z);
+
+
+            //        GameObject item = obstaclesList[Random.Range(0, obstaclesList.Count)];
+
+            //        obstacleContainers.Add(new Tuple<Transform, GameObject>(container.transform, item));
+
+            //        currentYPosition += intervalSize;
+            //    }
         }
     }
 
