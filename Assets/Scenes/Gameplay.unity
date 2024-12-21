@@ -1103,7 +1103,7 @@ PrefabInstance:
     - target: {fileID: 4532907041188478175, guid: 2db810ffa402b5848b926d5cff1a57af,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1532,7 +1532,7 @@ Transform:
   m_GameObject: {fileID: 997856766}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15.868079, z: -14}
+  m_LocalPosition: {x: 0, y: 7.9805794, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1615,12 +1615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d32dba81c5c49349b1cf96dc35f886a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstaclesList:
-  - {fileID: 4733350436720468837, guid: 3b122a6b23cc9ef4e94bee78204e2574, type: 3}
-  - {fileID: 4733350436720468837, guid: 2be83f5c56370974c9e372ccba57496d, type: 3}
-  - {fileID: 4733350436720468837, guid: 7d10f6023ecb7544680b5f42e1b0d606, type: 3}
-  - {fileID: 4733350436720468837, guid: 6f877f349f1643a43a906d043abd1c37, type: 3}
-  - {fileID: 4733350436720468837, guid: 2dfbfdce7aadbb549a1904890c14611a, type: 3}
   obstaclesCount: 100
   generateDistance: 50
   removeDistance: 10
@@ -2274,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 1474870810}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 12.3075, z: 0}
+  m_LocalPosition: {x: 0, y: 4.42, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2426,7 +2420,7 @@ Transform:
   m_GameObject: {fileID: 1485107552}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 15.868079, z: -14}
+  m_LocalPosition: {x: 0, y: 7.9805794, z: -14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

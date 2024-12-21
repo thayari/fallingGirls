@@ -59,4 +59,4 @@ MonoBehaviour:
     obstaclesCount: 15
   - difficultyLevel: 2
     zoneHeight: 100
-    obstaclesCount: 15
+    obstaclesCount: 10
