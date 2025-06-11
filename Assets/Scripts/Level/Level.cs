@@ -17,8 +17,6 @@ public class Level : MonoBehaviour
 
     public float LevelWidth { get { return levelWidth; } }
 
-    public LevelGrid levelGrid;
-
     private void Awake()
     {
         Init();
@@ -37,7 +35,6 @@ public class Level : MonoBehaviour
                 }
             }
 
-            //levelGrid = new LevelGrid(this.LevelWidth, this.totalLevelHeight);
 
             OnLevelGenerationCompleted?.Invoke();
         }
@@ -53,9 +50,13 @@ public class Level : MonoBehaviour
 
         GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, segmentParent.transform.rotation, segmentParent.transform);
 
-        spawnedSegments.Add(newSegment);
 
-        totalLevelHeight += GetSegmentHeight(newSegment);
+        spawnedSegments.Add(newSegment);
+        
+        float segmentHeight = GetSegmentHeight(newSegment);
+
+        totalLevelHeight += segmentHeight;
+        SegmentGrid grid = new SegmentGrid(this.LevelWidth, segmentHeight);
 
         currentSegmentIndex++;
     }
