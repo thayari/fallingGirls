@@ -49,15 +49,14 @@ public class Level : MonoBehaviour
         Vector3 spawnPosition = CalculateSpawnPosition();
 
         GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, segmentParent.transform.rotation, segmentParent.transform);
-
+        Segment segmentComponent = newSegment.AddComponent<Segment>();
 
         spawnedSegments.Add(newSegment);
-        
+
         float segmentHeight = GetSegmentHeight(newSegment);
+        segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig);
 
         totalLevelHeight += segmentHeight;
-        SegmentGrid grid = new SegmentGrid(this.LevelWidth, segmentHeight);
-
         currentSegmentIndex++;
     }
 
@@ -99,6 +98,10 @@ public class Level : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    private void CreateSegmentObstacles()
+    {
 
     }
 
