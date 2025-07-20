@@ -100,10 +100,6 @@ public class Level : MonoBehaviour
         }
     }
 
-    private void CreateSegmentObstacles()
-    {
-
-    }
 
     public LevelConfig GetLevelConfig()
     {

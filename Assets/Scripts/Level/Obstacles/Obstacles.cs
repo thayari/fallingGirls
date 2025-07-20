@@ -12,6 +12,9 @@ public class Obstacle
     public float positionY;
     public GameObject container;
     public GameObject item;
+    public bool left;
+    public int height;
+    public int width;
 }
 
 public class Obstacles 
