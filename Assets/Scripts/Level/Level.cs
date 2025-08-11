@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Level : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class Level : MonoBehaviour
     public event System.Action OnLevelGenerationCompleted;
 
     public float TotalLevelHeight { get { return totalLevelHeight; } }
-
     public float LevelWidth { get { return levelWidth; } }
 
     private void Awake()
@@ -35,7 +35,6 @@ public class Level : MonoBehaviour
                 }
             }
 
-
             OnLevelGenerationCompleted?.Invoke();
         }
         else
@@ -48,16 +47,45 @@ public class Level : MonoBehaviour
     {
         Vector3 spawnPosition = CalculateSpawnPosition();
 
-        GameObject newSegment = Instantiate(segmentPrefab, spawnPosition, segmentParent.transform.rotation, segmentParent.transform);
-        Segment segmentComponent = newSegment.AddComponent<Segment>();
+        GameObject newSegmentGO = Instantiate(segmentPrefab, spawnPosition, segmentParent.transform.rotation, segmentParent.transform);
+        Segment segmentComponent = newSegmentGO.AddComponent<Segment>();
+        spawnedSegments.Add(newSegmentGO);
 
-        spawnedSegments.Add(newSegment);
+        float segmentHeight = GetSegmentHeight(newSegmentGO);
 
-        float segmentHeight = GetSegmentHeight(newSegment);
-        segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig);
+        DifficultyZonesInfo currentZone = GetDifficultyZoneForHeight(totalLevelHeight);
+        if (currentZone != null)
+        {
+            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, currentZone.difficultyLevel, currentZone.obstaclesCount);
+        }
+        else
+        {
+            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, 0, 0);
+            Debug.LogWarning("No difficulty zone found for current height. No obstacles will be spawned.");
+        }
+
 
         totalLevelHeight += segmentHeight;
         currentSegmentIndex++;
+    }
+
+    private DifficultyZonesInfo GetDifficultyZoneForHeight(float height)
+    {
+        float cumulativeHeight = 0;
+        var zones = levelConfig.GetDifficultyZonesList();
+
+        if (zones == null || zones.Count == 0) return null;
+
+        foreach (var zone in zones)
+        {
+            cumulativeHeight += zone.zoneHeight;
+            if (height < cumulativeHeight)
+            {
+                return zone;
+            }
+        }
+        // Если высота превышает все зоны, используем параметры последней зоны
+        return zones.LastOrDefault();
     }
 
     private Vector3 CalculateSpawnPosition()
@@ -65,11 +93,8 @@ public class Level : MonoBehaviour
         if (spawnedSegments.Count > 0)
         {
             GameObject lastSegment = spawnedSegments[spawnedSegments.Count - 1];
-
             float lastSegmentHeight = GetSegmentHeight(lastSegment);
-
             Vector3 lastSegmentPosition = lastSegment.transform.position;
-
             return lastSegmentPosition + new Vector3(0, lastSegmentHeight, 0);
         }
         else
@@ -81,7 +106,6 @@ public class Level : MonoBehaviour
     private float GetSegmentHeight(GameObject segment)
     {
         BoxCollider2D boxCollider = segment.GetComponent<BoxCollider2D>();
-
         if (boxCollider != null)
         {
             float segmentWidth = boxCollider.size.x;
@@ -89,20 +113,9 @@ public class Level : MonoBehaviour
             {
                 levelWidth = segmentWidth;
             }
-
-            float segmentHeight = boxCollider.size.y;
-            
-            return segmentHeight;
+            return boxCollider.size.y;
         }
-        else
-        {
-            return 0;
-        }
-    }
-
-    private void CreateSegmentObstacles()
-    {
-
+        return 0;
     }
 
     public LevelConfig GetLevelConfig()

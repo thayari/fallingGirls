@@ -1,69 +1,70 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
-using Random = UnityEngine.Random;
 
-public class Obstacle 
+public class Obstacle
 {
     public ObstaclesInfo config;
-    public float positionY;
-    public GameObject container;
-    public GameObject item;
+    public GameObject instance;
 }
 
-public class Obstacles 
+public class Obstacles
 {
-    private SegmentGrid grid;
-    private List<ObstaclesInfo> allObstacles;
+    private const int MIN_VERTICAL_GAP = 3;
 
-    public void Initialize(SegmentGrid grid, List<ObstaclesInfo> obstaclesList, int obstacleCount, int difficultyLevel)
+    public void Generate(SegmentGrid grid, Transform parentTransform, LevelConfig levelConfig, int difficulty, int count)
     {
-        this.grid = grid;
-        this.allObstacles = obstaclesList;
+        if (count == 0) return;
 
-        List<ObstaclesInfo> filtered = allObstacles.FindAll(o => o.difficulty == difficultyLevel);
+        List<GameObject> validPrefabs = levelConfig.GetObstaclesList()
+                                                     .Where(obs => obs.difficulty == difficulty)
+                                                     .Select(obs => obs.prefab)
+                                                     .ToList();
 
-        for (int i = 0; i < obstacleCount; i++)
+        if (validPrefabs.Count == 0) return;
+
+        int currentY = MIN_VERTICAL_GAP;
+        int placedCount = 0;
+
+        while (placedCount < count)
         {
-            ObstaclesInfo config = filtered[Random.Range(0, filtered.Count)];
-            
-            //if (TryPlaceObstacle(config, out Vector3 pos))
-            //{
-            //    GameObject container = new GameObject("ObstacleContainer_" + i);
-            //    container.transform.SetParent(transform);
-            //    container.transform.position = pos;
+            GameObject prefabToSpawn = validPrefabs[Random.Range(0, validPrefabs.Count)];
+            Collider2D collider = prefabToSpawn.GetComponent<Collider2D>();
 
-            //    GameObject instance = Instantiate(config.prefab, pos, Quaternion.identity, container.transform);
-            //    instance.SetActive(true);
-            //}
+            if (collider == null)
+            {
+                Debug.LogError($"Obstacle prefab '{prefabToSpawn.name}' must have a Collider2D component!");
+                continue;
+            }
+
+            Vector2 colliderSize = collider.bounds.size;
+            int gridWidth = Mathf.CeilToInt(colliderSize.x * grid.subdiv);
+            int gridHeight = Mathf.CeilToInt(colliderSize.y * grid.subdiv);
+
+            if (currentY + gridHeight >= grid.Height)
+            {
+                Debug.Log("Not enough space in segment to place all requested obstacles.");
+                break;
+            }
+
+            bool placeOnLeft = Random.value > 0.5f;
+            int xPos = placeOnLeft ? 0 : grid.Width - gridWidth;
+
+            if (grid.IsAreaEmpty(xPos, currentY, gridWidth, gridHeight))
+            {
+                Vector3 worldPos = grid.GetWorldPositionFromGrid(new Vector2Int(xPos, currentY), parentTransform, colliderSize);
+                Object.Instantiate(prefabToSpawn, worldPos, Quaternion.identity, parentTransform);
+
+                grid.MarkArea(xPos, currentY, gridWidth, gridHeight, Cell.CellState.Obstacle);
+
+                placedCount++;
+
+                currentY += gridHeight + MIN_VERTICAL_GAP;
+            }
+            else
+            {
+                currentY++;
+            }
         }
     }
-
-    //private bool TryPlaceObstacle(ObstaclesInfo config, out Vector3 position)
-    //{
-    //    // TODO test
-    //    int width = 4; 
-    //    int height = 2;
-    //    int maxTries = 10;
-
-    //    for (int attempt = 0; attempt < maxTries; attempt++)
-    //    {
-    //        int x = Random.Range(0, grid.height - height + 1);
-    //        int y = Random.Range(0, grid.width - width + 1);
-
-    //        if (!grid.CanPlaceObstacle(x, y, width, height))
-    //            continue;
-
-    //        grid.PlaceObstacle(x, y, width, height);
-
-    //        position = grid.GridToWorldPosition(x, y);
-    //        return true;
-    //    }
-
-    //    position = Vector3.zero;
-    //    return false;
-    //}
 }

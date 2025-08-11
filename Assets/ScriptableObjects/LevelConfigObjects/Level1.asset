@@ -37,6 +37,8 @@ MonoBehaviour:
   - prefab: {fileID: 4532907041188478175, guid: be965abc4ee260a4f82d280687833e55,
       type: 3}
     count: 1
+  coinPrefab: {fileID: 2377488724847216920, guid: d667f8f0c673c8545b11f26b9ad2a24a,
+    type: 3}
   obstacles:
   - prefab: {fileID: 4733350436720468837, guid: 3b122a6b23cc9ef4e94bee78204e2574,
       type: 3}
