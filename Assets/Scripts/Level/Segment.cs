@@ -13,7 +13,8 @@ public class Segment : MonoBehaviour
         Height = segmentHeight;
         levelConfig = config;
         parentTransform = segmentTransform;
-        Grid = new SegmentGrid(levelWidth, segmentHeight);
+
+        Grid = new SegmentGrid(levelWidth, segmentHeight, segmentTransform);
 
         GenerateContent(difficulty, obstacleCount);
     }
@@ -32,7 +33,7 @@ public class Segment : MonoBehaviour
         PlaceCoins(coinsContainer);
     }
 
-    private void PlaceCoins(Transform coinsContainer) 
+    private void PlaceCoins(Transform coinsContainer)
     {
         GameObject coinPrefab = levelConfig.GetCoinPrefab();
         if (coinPrefab == null) return;
@@ -52,7 +53,7 @@ public class Segment : MonoBehaviour
                     Grid.SetCellState(x, currentY, Cell.CellState.Coin);
 
                     Vector2 coinSize = coinPrefab.GetComponent<Collider2D>()?.bounds.size ?? Vector2.one / Grid.subdiv;
-                    Vector3 position = Grid.GetWorldPositionFromGrid(new Vector2Int(x, currentY), parentTransform, coinSize);
+                    Vector3 position = Grid.GetWorldPositionFromGrid(new Vector2Int(x, currentY), coinSize);
 
                     Instantiate(coinPrefab, position, Quaternion.identity, coinsContainer);
 

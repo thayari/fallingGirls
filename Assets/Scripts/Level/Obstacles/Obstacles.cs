@@ -2,12 +2,6 @@
 using System.Linq;
 using UnityEngine;
 
-public class Obstacle
-{
-    public ObstaclesInfo config;
-    public GameObject instance;
-}
-
 public class Obstacles
 {
     private const int MIN_VERTICAL_GAP = 3;
@@ -20,7 +14,6 @@ public class Obstacles
                                                      .Where(obs => obs.difficulty == difficulty)
                                                      .Select(obs => obs.prefab)
                                                      .ToList();
-
         if (validPrefabs.Count == 0) return;
 
         int currentY = MIN_VERTICAL_GAP;
@@ -29,42 +22,36 @@ public class Obstacles
         while (placedCount < count)
         {
             GameObject prefabToSpawn = validPrefabs[Random.Range(0, validPrefabs.Count)];
-            Collider2D collider = prefabToSpawn.GetComponent<Collider2D>();
+            CapsuleCollider2D collider = prefabToSpawn.GetComponent<CapsuleCollider2D>();
+            if (collider == null) continue;
 
-            if (collider == null)
-            {
-                Debug.LogError($"Obstacle prefab '{prefabToSpawn.name}' must have a Collider2D component!");
-                continue;
-            }
+            Vector2 localSize = collider.size;
 
-            Vector2 colliderSize = collider.bounds.size;
+            Vector2 worldSize = new Vector2(
+                localSize.x * prefabToSpawn.transform.lossyScale.x,
+                localSize.y * prefabToSpawn.transform.lossyScale.y
+            );
+
+            Vector2 colliderSize = worldSize;
+
             int gridWidth = Mathf.CeilToInt(colliderSize.x * grid.subdiv);
             int gridHeight = Mathf.CeilToInt(colliderSize.y * grid.subdiv);
 
-            if (currentY + gridHeight >= grid.Height)
-            {
-                Debug.Log("Not enough space in segment to place all requested obstacles.");
-                break;
-            }
+            if (currentY + gridHeight >= grid.Height) break;
 
             bool placeOnLeft = Random.value > 0.5f;
-            int xPos = placeOnLeft ? 0 : grid.Width - gridWidth;
+            int xPosInGrid = placeOnLeft ? 0 : grid.Width - gridWidth;
 
-            if (grid.IsAreaEmpty(xPos, currentY, gridWidth, gridHeight))
-            {
-                Vector3 worldPos = grid.GetWorldPositionFromGrid(new Vector2Int(xPos, currentY), parentTransform, colliderSize);
-                Object.Instantiate(prefabToSpawn, worldPos, Quaternion.identity, parentTransform);
+            Vector2Int gridPos = new Vector2Int(xPosInGrid, currentY);
 
-                grid.MarkArea(xPos, currentY, gridWidth, gridHeight, Cell.CellState.Obstacle);
+            Vector3 worldPos = grid.GetWorldPositionFromGrid(gridPos, colliderSize);
 
-                placedCount++;
+            Object.Instantiate(prefabToSpawn, worldPos, Quaternion.identity, parentTransform);
 
-                currentY += gridHeight + MIN_VERTICAL_GAP;
-            }
-            else
-            {
-                currentY++;
-            }
+            grid.MarkArea(xPosInGrid, currentY, gridWidth, gridHeight, Cell.CellState.Obstacle);
+
+            placedCount++;
+            currentY += gridHeight + MIN_VERTICAL_GAP;
         }
     }
 }
