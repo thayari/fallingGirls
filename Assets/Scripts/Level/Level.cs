@@ -7,6 +7,8 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private LevelConfig levelConfig;
     [SerializeField] private Transform segmentParent;
+    [SerializeField] private float generationStartHeight = 200f;
+
     private int currentSegmentIndex = 0;
     private List<GameObject> spawnedSegments = new List<GameObject>();
     private float totalLevelHeight = 0;
@@ -53,14 +55,17 @@ public class Level : MonoBehaviour
 
         float segmentHeight = GetSegmentHeight(newSegmentGO);
 
+        float startOffset = (currentSegmentIndex == 0) ? generationStartHeight : 0f;
+
         DifficultyZonesInfo currentZone = GetDifficultyZoneForHeight(totalLevelHeight);
+
         if (currentZone != null)
         {
-            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, currentZone.difficultyLevel, currentZone.obstaclesCount);
+            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, currentZone.difficultyLevel, currentZone.obstaclesCount, startOffset);
         }
         else
         {
-            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, 0, 0);
+            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform);
             Debug.LogWarning("No difficulty zone found for current height. No obstacles will be spawned.");
         }
 

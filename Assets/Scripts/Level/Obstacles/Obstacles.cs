@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Obstacles
 {
-    private const int MIN_VERTICAL_GAP = 3;
+    private const int MIN_VERTICAL_GAP = 7;
 
-    public void Generate(SegmentGrid grid, Transform parentTransform, LevelConfig levelConfig, int difficulty, int count)
+    public void Generate(SegmentGrid grid, Transform parentTransform, LevelConfig levelConfig, int difficulty, int count, float initialContentOffset = 0f)
     {
         if (count == 0) return;
 
@@ -16,7 +16,9 @@ public class Obstacles
                                                      .ToList();
         if (validPrefabs.Count == 0) return;
 
-        int currentY = MIN_VERTICAL_GAP;
+        int gridOffsetY = Mathf.CeilToInt(initialContentOffset * grid.subdiv);
+
+        int currentY = gridOffsetY + MIN_VERTICAL_GAP;
         int placedCount = 0;
 
         while (placedCount < count)
@@ -46,7 +48,13 @@ public class Obstacles
 
             Vector3 worldPos = grid.GetWorldPositionFromGrid(gridPos, colliderSize);
 
-            Object.Instantiate(prefabToSpawn, worldPos, Quaternion.identity, parentTransform);
+            Quaternion spawnRotation = Quaternion.identity;
+            if (!placeOnLeft)
+            {
+                spawnRotation = Quaternion.Euler(0, 180f, 0);
+            }
+
+            Object.Instantiate(prefabToSpawn, worldPos, spawnRotation, parentTransform);
 
             grid.MarkArea(xPosInGrid, currentY, gridWidth, gridHeight, Cell.CellState.Obstacle);
 

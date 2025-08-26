@@ -6,8 +6,8 @@ public class Damager : MonoBehaviour
     {
         if (collision.TryGetComponent(out IDamagable damagable))
         {
-            damagable.OnDamaged();
-            Debug.Log("Damage!!!!");
+            //damagable.OnDamaged();
+            //Debug.Log("Damage!!!!");
         }
     }
 }

@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// ... (код SegmentGrid остается без изменений) ...
-
 public class SegmentGrid
 {
     public int Height { get; private set; }
@@ -23,7 +21,7 @@ public class SegmentGrid
         float segmentWorldHeight = this.Height * this.cellWorldSize;
 
         Vector3 segmentCenter = segmentTransform.position;
-        this.segmentWorldOrigin = segmentCenter - new Vector3(segmentWorldWidth / 2.0f, segmentWorldHeight / 2.0f, 0);
+        this.segmentWorldOrigin = segmentCenter - new Vector3(segmentWorldWidth / 2.0f, 0, 0);
 
         InitCells();
     }
@@ -93,6 +91,36 @@ public class SegmentGrid
             }
         }
         return true;
+    }
+
+    public void DrawGridGizmos()
+    {
+        if (cells == null) return; // Проверка на случай, если сетка еще не создана
+
+        Vector3 cellSize = new Vector3(cellWorldSize, cellWorldSize, 0.1f);
+        for (int i = 0; i < Height; i++)
+        {
+            for (int j = 0; j < Width; j++)
+            {
+                Vector3 cellCenter = GetWorldPositionFromGrid(new Vector2Int(j, i), new Vector2(cellWorldSize, cellWorldSize));
+
+                switch (cells[i, j].state)
+                {
+                    case Cell.CellState.Empty:
+                        Gizmos.color = Color.white;
+                        break;
+                    case Cell.CellState.Obstacle:
+                        Gizmos.color = Color.red;
+                        break;
+                    case Cell.CellState.Coin:
+                        Gizmos.color = Color.yellow;
+                        break;
+                }
+
+                // Рисуем полупрозрачный куб на месте ячейки
+                Gizmos.DrawWireCube(cellCenter, cellSize);
+            }
+        }
     }
 }
 
