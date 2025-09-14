@@ -7,7 +7,7 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private LevelConfig levelConfig;
     [SerializeField] private Transform segmentParent;
-    [SerializeField] private float generationStartHeight = 200f;
+    [SerializeField] private float generationStartHeight = 100f;
 
     private int currentSegmentIndex = 0;
     private List<GameObject> spawnedSegments = new List<GameObject>();
