@@ -10,6 +10,15 @@ public class Segment : MonoBehaviour
     private LevelConfig levelConfig;
     private float initialContentOffset = 0f;
 
+    [Header("Coin Placement Settings")]
+    [Tooltip("Как часто изгибается волна монет. Рекомендуемые значения: 0.1 - 0.5")]
+    public float coinWaveFrequency = 0.2f;
+
+    [Tooltip("Насколько сильно волна отклоняется от центра (в ячейках сетки). Рекомендуемые значения: 2.0 - 5.0")]
+    public float coinWaveAmplitude = 3.0f;
+
+    private float wavePhaseShift;
+
     public void Initialize(float segmentHeight, float levelWidth, LevelConfig config, Transform segmentTransform, int difficulty = 0, int obstacleCount = 0, float startOffset = 0f)
     {
         Height = segmentHeight;
@@ -24,6 +33,8 @@ public class Segment : MonoBehaviour
 
     private void GenerateContent(int difficulty, int obstacleCount)
     {
+        wavePhaseShift = Random.Range(0f, 2f * Mathf.PI);
+
         Transform obstaclesContainer = new GameObject("[Obstacles]").transform;
         obstaclesContainer.SetParent(parentTransform, false);
 
@@ -36,9 +47,34 @@ public class Segment : MonoBehaviour
         PlaceCoins(coinsContainer, initialContentOffset);
     }
 
+    /// <summary>
+    /// Проверяет, свободна ли область вокруг указанной ячейки, включая вертикальные отступы.
+    /// </summary>
+    /// <param name="centerX">Координата X центральной ячейки.</param>
+    /// <param name="centerY">Координата Y центральной ячейки.</param>
+    /// <param name="verticalPadding">Количество ячеек для проверки сверху и снизу.</param>
+    /// <returns>True, если вся область безопасна.</returns>
+    private bool IsAreaSafe(int centerX, int centerY, int verticalPadding)
+    {
+        // Проверяем диапазон ячеек по вертикали
+        for (int y = centerY - verticalPadding; y <= centerY + verticalPadding; y++)
+        {
+            // Убедимся, что не выходим за границы сетки
+            if (y >= 0 && y < Grid.Height)
+            {
+                if (!Grid.IsSafeForCoin(centerX, y))
+                {
+                    return false; // Найдено препятствие в области, это место небезопасно
+                }
+            }
+        }
+        return true; // Вся область свободна
+    }
+
     private void PlaceCoins(Transform coinsContainer, float initialContentOffset)
     {
-        const int COIN_DISTANCE = 3;
+        const int COIN_DISTANCE = 4;
+        const int VERTICAL_PADDING = 3;
 
         GameObject coinPrefab = levelConfig.GetCoinPrefab();
         if (coinPrefab == null) return;
@@ -56,21 +92,24 @@ public class Segment : MonoBehaviour
         }
 
         int coinGridHeight = Mathf.Max(1, Mathf.CeilToInt(coinWorldSize.y * Grid.subdiv));
-
         int gridOffsetY = Mathf.CeilToInt(initialContentOffset * Grid.subdiv);
         int currentY = gridOffsetY + 1;
-
-        int targetX = Mathf.RoundToInt(Grid.Width / 2f);
-
+        float gridCenter = Grid.Width / 2f;
         int verticalStep = coinGridHeight + (COIN_DISTANCE * coinGridHeight);
-        if (verticalStep == 0) verticalStep = 1; 
+        if (verticalStep == 0) verticalStep = 1;
 
-        while (currentY < Grid.Height - 1)
+        while (currentY < Grid.Height - (1 + VERTICAL_PADDING)) // Учитываем отступ при проверке границ цикла
         {
-            bool placeFound = false;
-            int finalX = -1; 
+            float waveValue = Mathf.Sin((currentY * coinWaveFrequency) + wavePhaseShift);
+            float waveOffset = waveValue * coinWaveAmplitude;
+            int targetX = Mathf.RoundToInt(gridCenter + waveOffset);
 
-            if (Grid.IsSafeForCoin(targetX, currentY))
+            bool placeFound = false;
+            int finalX = -1;
+
+            targetX = Mathf.Clamp(targetX, 0, Grid.Width - 1);
+
+            if (IsAreaSafe(targetX, currentY, VERTICAL_PADDING))
             {
                 finalX = targetX;
                 placeFound = true;
@@ -80,19 +119,19 @@ public class Segment : MonoBehaviour
                 for (int offset = 1; offset < Grid.Width / 2; offset++)
                 {
                     int rightX = targetX + offset;
-                    if (Grid.IsSafeForCoin(rightX, currentY))
+                    if (rightX < Grid.Width && IsAreaSafe(rightX, currentY, VERTICAL_PADDING))
                     {
                         finalX = rightX;
                         placeFound = true;
-                        break; 
+                        break;
                     }
 
                     int leftX = targetX - offset;
-                    if (Grid.IsSafeForCoin(leftX, currentY))
+                    if (leftX >= 0 && IsAreaSafe(leftX, currentY, VERTICAL_PADDING))
                     {
                         finalX = leftX;
                         placeFound = true;
-                        break; 
+                        break;
                     }
                 }
             }
@@ -100,11 +139,8 @@ public class Segment : MonoBehaviour
             if (placeFound)
             {
                 Grid.SetCellState(finalX, currentY, Cell.CellState.Coin);
-
                 Vector3 position = Grid.GetWorldPositionFromGrid(new Vector2Int(finalX, currentY), coinWorldSize);
                 Instantiate(coinPrefab, position, Quaternion.identity, coinsContainer);
-
-                targetX = finalX;
             }
 
             currentY += verticalStep;
@@ -113,6 +149,9 @@ public class Segment : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Grid.DrawGridGizmos();
+        if (Grid != null)
+        {
+            Grid.DrawGridGizmos();
+        }
     }
 }

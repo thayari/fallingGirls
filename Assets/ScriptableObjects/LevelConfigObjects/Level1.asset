@@ -46,13 +46,13 @@ MonoBehaviour:
   - prefab: {fileID: 4733350436720468837, guid: 2be83f5c56370974c9e372ccba57496d,
       type: 3}
     difficulty: 1
-  - prefab: {fileID: 4733350436720468837, guid: 7d10f6023ecb7544680b5f42e1b0d606,
+  - prefab: {fileID: 4733350436720468837, guid: 0ce990bdca1d3be43aa8513f4f6e3d4d,
       type: 3}
     difficulty: 2
-  - prefab: {fileID: 4733350436720468837, guid: 6f877f349f1643a43a906d043abd1c37,
+  - prefab: {fileID: 4733350436720468837, guid: 0ce990bdca1d3be43aa8513f4f6e3d4d,
       type: 3}
     difficulty: 2
-  - prefab: {fileID: 4733350436720468837, guid: 2dfbfdce7aadbb549a1904890c14611a,
+  - prefab: {fileID: 4733350436720468837, guid: 0ce990bdca1d3be43aa8513f4f6e3d4d,
       type: 3}
     difficulty: 2
   difficultyZones:
@@ -61,4 +61,7 @@ MonoBehaviour:
     obstaclesCount: 15
   - difficultyLevel: 2
     zoneHeight: 100
-    obstaclesCount: 10
+    obstaclesCount: 15
+  - difficultyLevel: 2
+    zoneHeight: 100
+    obstaclesCount: 15
