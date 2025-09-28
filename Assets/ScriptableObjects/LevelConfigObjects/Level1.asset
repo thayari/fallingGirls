@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   sequence:
+  - prefab: {fileID: 4532907041188478175, guid: be965abc4ee260a4f82d280687833e55,
+      type: 3}
+    count: 1
   - prefab: {fileID: 4064708768564486684, guid: 4901f8a88bdecca4a9be2346bfc515d4,
       type: 3}
     count: 1

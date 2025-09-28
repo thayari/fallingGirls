@@ -10,9 +10,13 @@ public class SegmentGrid
     private readonly Vector3 segmentWorldOrigin;
     private readonly float cellWorldSize;
     private readonly float segmentWorldWidth;
+    private readonly float rawWidth;
+    private readonly float rawHeight;
 
     public SegmentGrid(float width, float height, Transform segmentTransform)
     {
+        this.rawWidth = width;
+        this.rawHeight = height;
         this.Width = Mathf.CeilToInt(width * subdiv);
         this.Height = Mathf.CeilToInt(height * subdiv);
         this.cellWorldSize = 1.0f / subdiv;
@@ -40,11 +44,39 @@ public class SegmentGrid
 
     public Vector3 GetWorldPositionFromGrid(Vector2Int gridPos, Vector2 objectWorldSize)
     {
+        // 1. Вычисляется левый нижний угол ячейки gridPos
         float localX = gridPos.x * cellWorldSize;
         float localY = gridPos.y * cellWorldSize;
+
+        // 2. К этому углу прибавляется половина размера объекта
         Vector3 objectCenterOffset = new Vector3(localX + objectWorldSize.x / 2.0f, localY + objectWorldSize.y / 2.0f, 0);
+
+        // 3. Результат смещается на позицию самого грида
         return segmentWorldOrigin + objectCenterOffset;
     }
+
+    public Vector3 GetObstaclePosition(Vector2Int gridPos, Vector2 objectWorldSize)
+    {
+        float localX = gridPos.x * cellWorldSize;
+        float localY = gridPos.y * cellWorldSize;
+
+        float targetX;
+        float targetY = localY + objectWorldSize.y / 2.0f;
+
+        if (gridPos.x == 0)
+        {
+            // пивот на расстоянии половины ширины от левого края
+            targetX = objectWorldSize.x / 2.0f;
+        }
+        else
+        {
+            targetX = rawWidth - (objectWorldSize.x / 2.0f);
+        }
+
+        Vector3 objectCenterOffset = new Vector3(targetX, targetY, 0);
+        return segmentWorldOrigin + objectCenterOffset;
+    }
+
 
     public void SetCellState(int x, int y, Cell.CellState state)
     {

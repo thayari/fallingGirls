@@ -47,15 +47,14 @@ public class Obstacles
 
             Vector2Int gridPos = new Vector2Int(xPosInGrid, currentY);
 
-            Vector3 worldPos = grid.GetWorldPositionFromGrid(gridPos, colliderSize);
+            Vector3 worldPos = grid.GetObstaclePosition(gridPos, colliderSize);
 
             Quaternion spawnRotation = Quaternion.identity;
-            if (!placeOnLeft)
-            {
-                spawnRotation = Quaternion.Euler(0, 0, 180f);
-            }
 
-            Object.Instantiate(prefabToSpawn, worldPos, spawnRotation, parentTransform);
+            Vector3 spawnScale = placeOnLeft ? Vector3.one : new Vector3(-1f, 1f, 1f);
+
+            GameObject spawnedObject = Object.Instantiate(prefabToSpawn, worldPos, spawnRotation, parentTransform);
+            spawnedObject.transform.localScale = spawnScale;
 
             grid.MarkArea(xPosInGrid, currentY, gridWidth, gridHeight, Cell.CellState.Obstacle);
 
