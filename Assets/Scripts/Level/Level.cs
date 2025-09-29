@@ -55,13 +55,13 @@ public class Level : MonoBehaviour
 
         float segmentHeight = GetSegmentHeight(newSegmentGO);
 
-        float startOffset = (currentSegmentIndex == 0) ? generationStartHeight : 0f;
+        float obstaclesStartOffset = (currentSegmentIndex == 0) ? generationStartHeight : 0f;
 
         DifficultyZonesInfo currentZone = GetDifficultyZoneForHeight(totalLevelHeight);
 
         if (currentZone != null)
         {
-            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, currentZone.difficultyLevel, currentZone.obstaclesCount, startOffset);
+            segmentComponent.Initialize(segmentHeight, this.LevelWidth, levelConfig, newSegmentGO.transform, currentZone.difficultyLevel, currentZone.obstaclesCount, obstaclesStartOffset);
         }
         else
         {

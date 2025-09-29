@@ -19,12 +19,12 @@ public class Segment : MonoBehaviour
 
     private float wavePhaseShift;
 
-    public void Initialize(float segmentHeight, float levelWidth, LevelConfig config, Transform segmentTransform, int difficulty = 0, int obstacleCount = 0, float startOffset = 0f)
+    public void Initialize(float segmentHeight, float levelWidth, LevelConfig config, Transform segmentTransform, int difficulty = 0, int obstacleCount = 0, float obstaclesStartOffset = 0f)
     {
         Height = segmentHeight;
         levelConfig = config;
         parentTransform = segmentTransform;
-        initialContentOffset = startOffset;
+        initialContentOffset = obstaclesStartOffset;
 
         Grid = new SegmentGrid(levelWidth, segmentHeight, segmentTransform);
 
@@ -44,7 +44,7 @@ public class Segment : MonoBehaviour
         Obstacles obstacleGenerator = new Obstacles();
         obstacleGenerator.Generate(Grid, obstaclesContainer, levelConfig, difficulty, obstacleCount, initialContentOffset);
 
-        PlaceCoins(coinsContainer, initialContentOffset);
+        PlaceCoins(coinsContainer);
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class Segment : MonoBehaviour
         return true; // Вся область свободна
     }
 
-    private void PlaceCoins(Transform coinsContainer, float initialContentOffset)
+    private void PlaceCoins(Transform coinsContainer)
     {
         const int COIN_DISTANCE = 4;
         const int VERTICAL_PADDING = 3;
@@ -92,8 +92,10 @@ public class Segment : MonoBehaviour
         }
 
         int coinGridHeight = Mathf.Max(1, Mathf.CeilToInt(coinWorldSize.y * Grid.subdiv));
-        int gridOffsetY = Mathf.CeilToInt(initialContentOffset * Grid.subdiv);
-        int currentY = gridOffsetY + 1;
+        //int gridOffsetY = Mathf.CeilToInt(initialContentOffset * Grid.subdiv);
+        //int currentY = gridOffsetY + 1;
+        int currentY = 1;
+
         float gridCenter = Grid.Width / 2f;
         int verticalStep = coinGridHeight + (COIN_DISTANCE * coinGridHeight);
         if (verticalStep == 0) verticalStep = 1;

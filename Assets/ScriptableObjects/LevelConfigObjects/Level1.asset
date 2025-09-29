@@ -13,7 +13,28 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   sequence:
-  - prefab: {fileID: 4532907041188478175, guid: be965abc4ee260a4f82d280687833e55,
+  - prefab: {fileID: 4064708768564486684, guid: e90a59cc091e5d44aa669a59e4719a07,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4532907041188478175, guid: e5b2b68eb7e0aa045a843c4476d7c7db,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4064708768564486684, guid: 21928795e235bce46a3caa6359e08c5b,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4064708768564486684, guid: f37857ec59a7e00439a250097901f909,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4064708768564486684, guid: 4606b937ddf818446ba6c99730fe69ad,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4064708768564486684, guid: 7ef4db61c3fd39348bf884b13dd24b87,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4064708768564486684, guid: 362bade4ac9046a4d9b999ed8611b974,
+      type: 3}
+    count: 1
+  - prefab: {fileID: 4064708768564486684, guid: 5172ce4773fa6d64086ef8d7365df425,
       type: 3}
     count: 1
   - prefab: {fileID: 4064708768564486684, guid: 4901f8a88bdecca4a9be2346bfc515d4,
