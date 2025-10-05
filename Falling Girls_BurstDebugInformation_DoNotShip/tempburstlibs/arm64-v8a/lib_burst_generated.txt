@@ -1,7 +1,7 @@
-Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --platform=Android
 --backend=burst-llvm-16
---target=ARMV7A_NEON32
+--target=ARMV8A_AARCH64
 --global-safety-checks-setting=Off
 --meta-data-generation=False
 --dump=Function
@@ -12,7 +12,7 @@ Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_bur
 --debug=Full
 --key-folder=D:/ProgramFiles/Unity/Editor/6000.0.32f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=D:\WORK\fallingGirls\Library\Burst
---output=D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+--output=D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
@@ -117,7 +117,7 @@ Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_bur
 --method=Unity.Jobs.IJobExtensions+JobStruct`1[[Unity.Collections.NativeStream+ConstructJob, Unity.Collections, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(Unity.Collections.NativeStream+ConstructJob&, Unity.Collections, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--b78f808503c8b5fe97a83e833bd5871d
 --platform=Android
 --backend=burst-llvm-16
---target=ARMV7A_NEON32
+--target=ARMV8A_AARCH64
 --global-safety-checks-setting=Off
 --meta-data-generation=False
 --dump=Function
@@ -128,7 +128,7 @@ Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_bur
 --debug=Full
 --key-folder=D:/ProgramFiles/Unity/Editor/6000.0.32f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=D:\WORK\fallingGirls\Library\Burst
---output=D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+--output=D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=UnityEngine.Rendering.Universal.ShadowUtility, Unity.RenderPipelines.Universal.2D.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::ClipEdges(Unity.Collections.NativeArray`1[[UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Collections.NativeArray`1[[UnityEngine.Rendering.Universal.ShadowEdge, Unity.RenderPipelines.Universal.2D.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Collections.NativeArray`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Collections.NativeArray`1[[System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Single, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Collections.NativeArray`1[[UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Collections.NativeArray`1[[UnityEngine.Rendering.Universal.ShadowEdge, Unity.RenderPipelines.Universal.2D.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|Unity.Collections.NativeArray`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null)--c08293264b30953ea71a17b5583decd0
@@ -139,7 +139,7 @@ Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_bur
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.LightMinMaxZJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.LightMinMaxZJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--2230a143748f5ecbc3a89a75bf0ad747
 --platform=Android
 --backend=burst-llvm-16
---target=ARMV7A_NEON32
+--target=ARMV8A_AARCH64
 --global-safety-checks-setting=Off
 --disable-safety-checks
 --meta-data-generation=False
@@ -152,7 +152,7 @@ Library: D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_bur
 --debug=Full
 --key-folder=D:/ProgramFiles/Unity/Editor/6000.0.32f1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=D:\WORK\fallingGirls\Library\Burst
---output=D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
+--output=D:\WORK\fallingGirls\Temp\BurstOutput\tempburstlibs\arm64-v8a\lib_burst_generated
 --pdb-search-paths=Temp/ManagedSymbols/
 
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ZBinningJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ZBinningJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--77fc393cb521ac129b1392d4eb94d29a
