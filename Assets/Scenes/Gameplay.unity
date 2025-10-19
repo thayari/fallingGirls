@@ -767,6 +767,10 @@ MonoBehaviour:
   levelConfig: {fileID: 11400000, guid: 47cd3649ff978fa4a82f6c5a4029b200, type: 2}
   segmentParent: {fileID: 533003898}
   generationStartHeight: 50
+  activeSegmentsBuffer: 2
+  playerTransform: {fileID: 1474870815}
+  generationTriggerDistance: 20
+  deletionDistance: 10
 --- !u!1 &566446642
 GameObject:
   m_ObjectHideFlags: 0
