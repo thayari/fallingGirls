@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -6,7 +6,30 @@ using static Cinemachine.DocumentationSortingAttribute;
 
 public class Statistics : MonoBehaviour
 {
-    public static Statistics Instance;
+    private static Statistics _instance;
+
+    public static Statistics Instance
+    {
+        get
+        {
+            if (applicationIsQuitting)
+            {
+                return null;
+            }
+
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<Statistics>();
+
+                if (_instance == null)
+                {
+                    Debug.LogError("На сцене отсутствует объект со скриптом Statistics!");
+                }
+            }
+            return _instance;
+        }
+    }
+
     [Header("Save")]
     [SerializeField] private string fileName = "Statistics.json";
     public string path => Path.Combine(Application.persistentDataPath, fileName);
@@ -28,16 +51,16 @@ public class Statistics : MonoBehaviour
 
     private SaveStatistics _saveStatistics = new SaveStatistics();
 
+    private static bool applicationIsQuitting = false;
+
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
+        if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
+            return;
         }
+
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
         Load();
@@ -75,6 +98,11 @@ public class Statistics : MonoBehaviour
         {
             Coin.OnCoinTaken -= AddMoney;
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        applicationIsQuitting = true;
     }
 
     [System.Serializable]

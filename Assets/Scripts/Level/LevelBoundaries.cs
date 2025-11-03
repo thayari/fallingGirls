@@ -2,13 +2,9 @@ using UnityEngine;
 
 public class LevelBoundaries : MonoBehaviour
 {
-    private Movement _managerMovement;
+    [SerializeField] private Movement playerMovement;
     [SerializeField] private float bounceDistance = 0.2f;
 
-    private void Start()
-    {
-        _managerMovement = GameObject.FindWithTag("Manager").GetComponent<Movement>();
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -16,11 +12,11 @@ public class LevelBoundaries : MonoBehaviour
         {
             if (gameObject.CompareTag("LeftBoundary"))
             {
-                _managerMovement.canMoveLeft = false;
+                playerMovement.canMoveLeft = false;
             }
             if (gameObject.CompareTag("RightBoundary"))
             {
-                _managerMovement.canMoveRight = false;
+                playerMovement.canMoveRight = false;
             }
         }
     }
@@ -31,11 +27,11 @@ public class LevelBoundaries : MonoBehaviour
         {
             if (gameObject.CompareTag("LeftBoundary"))
             {
-                _managerMovement.canMoveLeft = true;
+                playerMovement.canMoveLeft = true;
             }
             if (gameObject.CompareTag("RightBoundary"))
             {
-                _managerMovement.canMoveRight = true;
+                playerMovement.canMoveRight = true;
             }
         }
     }

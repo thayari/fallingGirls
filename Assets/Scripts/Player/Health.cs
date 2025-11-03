@@ -1,11 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class Health : MonoBehaviour, IDamagable
 {
-    [SerializeField] private GameOver _gameOver;
+    [SerializeField] private GameManager _gameManager;
     public void OnDamaged()
     {
-        _gameOver?.OnActivate();
+        // добавить логику уменьшения жизней, сейчас пока жизнь одна
+        _gameManager.ChangeState(GameManager.GameState.GameOver);
     }
 }
