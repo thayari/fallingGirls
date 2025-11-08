@@ -11,10 +11,10 @@ public class CoinsCounter : MonoBehaviour
         Statistics.Instance.moneyChanged += UpdateCoinsCounter;
     }
 
-    private void OnDisable()
-    {
-        Statistics.Instance.moneyChanged -= UpdateCoinsCounter;
-    }
+    //private void OnDisable()
+    //{
+    //    Statistics.Instance.moneyChanged -= UpdateCoinsCounter;
+    //}
 
     private void UpdateCoinsCounter()
     {

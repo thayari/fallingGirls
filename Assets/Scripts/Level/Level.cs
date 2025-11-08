@@ -17,6 +17,7 @@ public class Level : MonoBehaviour
     private int currentSegmentIndexInSequence = 0;
     private List<GameObject> activeSegments = new List<GameObject>();
     private float totalGeneratedHeight = 0;
+    private int currentIndexInSegmentType = 0;
 
     //private int currentSegmentIndex = 0;
     //private List<GameObject> spawnedSegments = new List<GameObject>();
@@ -53,9 +54,34 @@ public class Level : MonoBehaviour
 
         if (playerTransform.position.y + generationTriggerDistance >= lastSegmentTopY)
         {
-            GenerateNextSegment();
-            CleanUpOldSegments();
+            if (currentSegmentIndexInSequence >= levelConfig.GetSequence().Count)
+            {
+                return;
+            }
+
+            SegmentInfo currentSegmentGroup = levelConfig.GetSequence()[currentSegmentIndexInSequence];
+            Debug.Log($"Текущая группа: Prefab={currentSegmentGroup.prefab.name}, нужно сгенерировать={currentSegmentGroup.count}");
+            Debug.Log("Генерируем " + currentIndexInSegmentType);
+
+            int segmentsInTypeCount = currentSegmentGroup.count;
+
+            if (currentIndexInSegmentType >= segmentsInTypeCount)
+            {
+                currentSegmentIndexInSequence++;
+                currentIndexInSegmentType = 0;
+
+                if (currentSegmentIndexInSequence >= levelConfig.GetSequence().Count)
+                {
+                    return;
+                }
+                currentSegmentGroup = levelConfig.GetSequence()[currentSegmentIndexInSequence];
+            }
+
+            GenerateNextSegment(currentSegmentGroup.prefab);
+            currentIndexInSegmentType++;
         }
+
+        CleanUpOldSegments();
     }
 
     private async void Init()
@@ -77,11 +103,9 @@ public class Level : MonoBehaviour
         }
     }
 
-    private void GenerateNextSegment()
+    private void GenerateNextSegment(GameObject segmentPrefab)
     {
-        GameObject segmentPrefab = levelConfig.GetSequence()[currentSegmentIndexInSequence].prefab;
         SpawnSegment(segmentPrefab);
-        currentSegmentIndexInSequence++;
     }
 
     private void SpawnSegment(GameObject segmentPrefab)
